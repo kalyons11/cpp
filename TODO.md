@@ -1,0 +1,1 @@
+- Set up linter on each commit
