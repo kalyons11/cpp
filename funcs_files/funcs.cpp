@@ -4,6 +4,7 @@
  * Notes:
  * Nested functions are not supported
  * Functions should do one and only one task
+ * Forward declarations avoid the need for complex checking of dependency order
  */
 
 void doPrint()
@@ -38,6 +39,9 @@ int doubleNumber(int num)
   return num * 2;
 }
 
+// Function declaration
+int add(int x, int y);
+
 // Definition of function main()
 int main()
 {
@@ -55,5 +59,12 @@ int main()
 
   std::cout << doubleNumber(100) << "\n";
 
+  std::cout << "The sum of 3 and 4 is: " << add(3, 4) << '\n';
+
   return 0;
+}
+
+int add(int x, int y)  // even though the body of add() isn't defined until here
+{
+  return x + y;
 }
