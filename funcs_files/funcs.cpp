@@ -3,6 +3,7 @@
 /*
  * Notes:
  * Nested functions are not supported
+ * Functions should do one and only one task
  */
 
 void doPrint()
