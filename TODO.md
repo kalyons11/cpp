@@ -1,1 +1,1 @@
-- Set up linter on each commit
+- Set up linter on each commit, i.e. via clang-format
