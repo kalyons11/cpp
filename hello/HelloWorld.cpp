@@ -1,6 +1,7 @@
 #include <iostream>
 
-int main() {
+int main()
+{
     std::cout << "Hello, world!\n";
 
     [[maybe_unused]] int x; // Definition then default-initialization

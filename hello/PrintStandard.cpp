@@ -8,7 +8,8 @@ const char* stdName[numStandards] = {"Pre-C++11", "C++11", "C++14", "C++17",
 
 long getCPPStandard() { return __cplusplus; }
 
-int main() {
+int main()
+{
     long standard = getCPPStandard();
 
     if (standard == -1) {
