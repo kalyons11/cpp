@@ -32,6 +32,11 @@ void doSomething(int /*count*/)
 {
 }
 
+int doubleNumber(int num)
+{
+  return num * 2;
+}
+
 // Definition of function main()
 int main()
 {
@@ -46,6 +51,8 @@ int main()
 
   printValues(2, 3);
   doSomething(2);
+
+  std::cout << doubleNumber(100) << "\n";
 
   return 0;
 }

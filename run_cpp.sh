@@ -34,7 +34,7 @@ BASE_NAME=$(basename "$SOURCE_FILE" .cpp)
 cd "$SOURCE_DIR" || { echo "Error: Cannot access directory $SOURCE_DIR"; exit 1; }
 
 # Compile command with or without -Werror
-CLANG_FLAGS="-mmacosx-version-min=13.0 -o \"$BASE_NAME\" -ggdb -O0 \
+CLANG_FLAGS="-mmacosx-version-min=13.0 -o \"$BASE_NAME\".o -ggdb -O0 \
     -pedantic-errors -Wall -Weffc++ -Wextra -Wconversion -Wsign-conversion -std=c++20"
 
 if [ "$ALLOW_WARNINGS" == false ]; then
@@ -42,4 +42,4 @@ if [ "$ALLOW_WARNINGS" == false ]; then
 fi
 
 # Compile and run the program
-eval clang++ $CLANG_FLAGS \"$BASE_NAME.cpp\" && ./"$BASE_NAME"
+eval clang++ $CLANG_FLAGS \"$BASE_NAME.cpp\" && ./"$BASE_NAME".o
