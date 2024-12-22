@@ -29,5 +29,9 @@ int main() {
 
     // Both std::cout and std::cin are buffered with a FIFO queue
 
+    // Let's not initialize a variable, print it out, then see what we get
+    int un;
+    std::cout << un << "\n";
+
     return 0;
 }
