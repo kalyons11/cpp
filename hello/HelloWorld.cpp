@@ -13,5 +13,21 @@ int main() {
 
     // [[maybe_unused]] int bad { 4.5 };
 
+    // Using the insertion operator
+    std::cout << "The number 4: " << 4 << std::endl;
+    // Prefer \n over std::endl when outputting text to the console.
+    // This avoid unnecessary flushing
+
+    // Using the extraction operator
+    std::cout << "Enter two numbers separated by spaces: ";
+    int number {};
+    int other {};
+    std::cin >> number >> other;
+
+    std::cout << "You entered: " << number << "\n";
+    std::cout << "You also entered: " << other << "\n";
+
+    // Both std::cout and std::cin are buffered with a FIFO queue
+
     return 0;
 }
