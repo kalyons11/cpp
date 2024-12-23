@@ -71,6 +71,10 @@ int main()
     std::cout << "Thank you for reading the program written by " << MY_NAME
               << "." << '\n';
 
+#ifndef ADD_DEF
+    std::cout << "ADD_DEF from add.cpp isn't known here." << '\n';
+#endif
+
     return 0;
 }
 
