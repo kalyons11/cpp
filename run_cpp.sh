@@ -41,5 +41,8 @@ if [ "$ALLOW_WARNINGS" == false ]; then
     CLANG_FLAGS="$CLANG_FLAGS -Werror"
 fi
 
+# Find all .cpp files in the same directory
+CPP_FILES=$(find . -maxdepth 1 -name "*.cpp")
+
 # Compile and run the program
-eval clang++ $CLANG_FLAGS \"$BASE_NAME.cpp\" && ./"$BASE_NAME".o
+eval clang++ $CLANG_FLAGS $CPP_FILES && ./"$BASE_NAME".o

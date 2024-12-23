@@ -39,8 +39,9 @@ int doubleNumber(int num)
   return num * 2;
 }
 
-// Function declaration
+// Function declarations go here
 int add(int x, int y);
+int subtract(int x, int y);
 
 // Definition of function main()
 int main()
@@ -60,6 +61,8 @@ int main()
   std::cout << doubleNumber(100) << "\n";
 
   std::cout << "The sum of 3 and 4 is: " << add(3, 4) << '\n';
+
+  std::cout << "The difference of 5 and 2 is: " << subtract(5, 2) << '\n';
 
   return 0;
 }
