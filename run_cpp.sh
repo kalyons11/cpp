@@ -33,16 +33,42 @@ BASE_NAME=$(basename "$SOURCE_FILE" .cpp)
 # Change to the directory of the source file
 cd "$SOURCE_DIR" || { echo "Error: Cannot access directory $SOURCE_DIR"; exit 1; }
 
+# Find all .cpp files in the same directory as the source file
+CPP_FILES=$(find . -maxdepth 1 -name "*.cpp")
+
+# Auto-fix issues with clang-tidy for each .cpp file
+echo "Running clang-tidy with auto-fix on all .cpp files..."
+for CPP_FILE in $CPP_FILES; do
+    echo "Analyzing and fixing $CPP_FILE with clang-tidy..."
+    clang-tidy "$CPP_FILE" -fix -fix-errors -- -std=c++20 || exit 1
+done
+
+# Auto-fix style issues with clang-format for each .cpp file
+echo "Running clang-format to auto-format all .cpp files..."
+for CPP_FILE in $CPP_FILES; do
+    echo "Formatting $CPP_FILE with clang-format..."
+    clang-format -i "$CPP_FILE" || exit 1
+done
+
 # Compile command with or without -Werror
-CLANG_FLAGS="-mmacosx-version-min=13.0 -o \"$BASE_NAME\".o -ggdb -O0 \
+CLANG_FLAGS="-mmacosx-version-min=13.0 -c -ggdb -O0 \
     -pedantic-errors -Wall -Weffc++ -Wextra -Wconversion -Wsign-conversion -std=c++20"
 
 if [ "$ALLOW_WARNINGS" == false ]; then
     CLANG_FLAGS="$CLANG_FLAGS -Werror"
 fi
 
-# Find all .cpp files in the same directory
-CPP_FILES=$(find . -maxdepth 1 -name "*.cpp")
+# Compile all .cpp files into object files
+for CPP_FILE in $CPP_FILES; do
+    OBJ_FILE=$(basename "$CPP_FILE" .cpp).o
+    echo "Compiling $CPP_FILE to $OBJ_FILE..."
+    eval clang++ $CLANG_FLAGS "$CPP_FILE" -o "$OBJ_FILE" || exit 1
+done
 
-# Compile and run the program
-eval clang++ $CLANG_FLAGS $CPP_FILES && ./"$BASE_NAME".o
+# Link the object files into an executable
+echo "Linking object files into $BASE_NAME..."
+eval clang++ -o "$BASE_NAME".o *.o || exit 1
+
+# Run the program
+echo "Running $BASE_NAME..."
+./"$BASE_NAME".o
