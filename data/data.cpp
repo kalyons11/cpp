@@ -2,6 +2,8 @@
 #include <iomanip>  // for std::setw (which sets the width of the subsequent output)
 #include <iostream>
 
+#include "signed_ints.h"
+
 int main()
 {
     // Fundamental data types
@@ -34,6 +36,11 @@ int main()
     std::cout << std::setw(16) << "double:" << sizeof(double) << " bytes\n";
     std::cout << std::setw(16) << "long double:" << sizeof(long double)
               << " bytes\n";
+
+    int x{};
+    std::cout << "x is " << sizeof(x) << " bytes\n";
+
+    print_int_info();
 
     return 0;
 }
