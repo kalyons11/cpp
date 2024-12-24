@@ -1,5 +1,8 @@
 #include <iostream>
 
+// Include my own header file so I can resolve any discrepancies at compile time
+#include "add.h"
+
 // This is to be avoided as it can create surprising conflicts down the road
 using namespace std;
 
