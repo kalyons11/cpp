@@ -51,7 +51,7 @@ for CPP_FILE in $CPP_FILES; do
 done
 
 # Compile command with or without -Werror
-CLANG_FLAGS="-mmacosx-version-min=13.0 -c -ggdb -O0 \
+CLANG_FLAGS="-mmacosx-version-min=13.0 -c -g -O0 \
     -pedantic-errors -Wall -Weffc++ -Wextra -Wconversion -Wsign-conversion -std=c++20"
 
 if [ "$ALLOW_WARNINGS" == false ]; then
@@ -67,7 +67,10 @@ done
 
 # Link the object files into an executable
 echo "Linking object files into $BASE_NAME..."
-eval clang++ -o "$BASE_NAME".o *.o || exit 1
+eval clang++ -o $CLANG_FLAGS "$BASE_NAME".o *.o || exit 1
+
+# Set up debug symbols
+dsymutil ./"$BASE_NAME".o
 
 # Run the program
 echo "Running $BASE_NAME..."
