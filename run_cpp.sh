@@ -1,77 +1,52 @@
 #!/bin/bash
 
-# Check if a source file is provided
-if [ -z "$1" ]; then
-    echo "Usage: $0 <source_file.cpp> [--allow-warnings]"
+# Default flags for compiling and linking with debug symbols
+CLANG_FLAGS="-mmacosx-version-min=13.0 -g -O0 -pedantic-errors -Wall -Weffc++ -Wextra -Wconversion -Wsign-conversion -std=c++20"
+
+run_cpp() {
+  if [ -z "$1" ]; then
+    echo "Error: No source file provided."
     exit 1
-fi
+  fi
 
-# Get the source file and validate its existence
-SOURCE_FILE="$1"
-if [[ ! "$SOURCE_FILE" == *.cpp ]]; then
-    echo "Error: First argument must be a .cpp file."
-    exit 1
-fi
-if [ ! -f "$SOURCE_FILE" ]; then
-    echo "Error: File '$SOURCE_FILE' not found."
-    exit 1
-fi
+  SOURCE_FILE="$1"
+  SOURCE_DIR=$(dirname "$SOURCE_FILE")
+  BASE_NAME=$(basename "$SOURCE_FILE" .cpp)
+  EXECUTABLE_FILE="$BASE_NAME.o"
 
-# Check for the --allow-warnings flag as the second argument
-ALLOW_WARNINGS=false
-if [ "$2" == "--allow-warnings" ]; then
-    ALLOW_WARNINGS=true
-elif [ -n "$2" ]; then
-    echo "Error: Invalid second argument. Use '--allow-warnings' or leave it empty."
-    exit 1
-fi
+  echo "Changing to source directory: $SOURCE_DIR"
+  cd "$SOURCE_DIR" || { echo "Error: Failed to change directory to '$SOURCE_DIR'."; exit 1; }
 
-# Extract directory and base name
-SOURCE_DIR=$(dirname "$SOURCE_FILE")
-BASE_NAME=$(basename "$SOURCE_FILE" .cpp)
+  # Find all .cpp files in the same directory as the source file
+  CPP_FILES=$(find . -maxdepth 1 -name "*.cpp")
 
-# Change to the directory of the source file
-cd "$SOURCE_DIR" || { echo "Error: Cannot access directory $SOURCE_DIR"; exit 1; }
-
-# Find all .cpp files in the same directory as the source file
-CPP_FILES=$(find . -maxdepth 1 -name "*.cpp")
-
-# Auto-fix issues with clang-tidy for each .cpp file
-echo "Running clang-tidy with auto-fix on all .cpp files..."
-for CPP_FILE in $CPP_FILES; do
+  # Auto-fix issues with clang-tidy for each .cpp file
+  echo "Running clang-tidy with auto-fix on all .cpp files..."
+  for CPP_FILE in $CPP_FILES; do
     echo "Analyzing and fixing $CPP_FILE with clang-tidy..."
     clang-tidy "$CPP_FILE" -fix -fix-errors -- -std=c++20 || exit 1
-done
+  done
 
-# Auto-fix style issues with clang-format for each .cpp file
-echo "Running clang-format to auto-format all .cpp files..."
-for CPP_FILE in $CPP_FILES; do
+  # Auto-fix style issues with clang-format for each .cpp file
+  echo "Running clang-format to auto-format all .cpp files..."
+  for CPP_FILE in $CPP_FILES; do
     echo "Formatting $CPP_FILE with clang-format..."
     clang-format -i "$CPP_FILE" || exit 1
-done
+  done
 
-# Compile command with or without -Werror
-CLANG_FLAGS="-mmacosx-version-min=13.0 -c -g -O0 \
-    -pedantic-errors -Wall -Weffc++ -Wextra -Wconversion -Wsign-conversion -std=c++20"
+  # Compile and link all .cpp files in one step
+  echo "Compiling and linking all .cpp files into executable: $EXECUTABLE_FILE"
+  clang++ $CLANG_FLAGS $CPP_FILES -o "$EXECUTABLE_FILE"
+  if [ $? -ne 0 ]; then
+    echo "Error: Compilation and linking failed."
+    exit 1
+  fi
 
-if [ "$ALLOW_WARNINGS" == false ]; then
-    CLANG_FLAGS="$CLANG_FLAGS -Werror"
-fi
+  echo "Executable generated: $SOURCE_DIR/$EXECUTABLE_FILE"
 
-# Compile all .cpp files into object files
-for CPP_FILE in $CPP_FILES; do
-    OBJ_FILE=$(basename "$CPP_FILE" .cpp).o
-    echo "Compiling $CPP_FILE to $OBJ_FILE..."
-    eval clang++ $CLANG_FLAGS "$CPP_FILE" -o "$OBJ_FILE" || exit 1
-done
+  # Run the program
+  echo "Running the program..."
+  ./$EXECUTABLE_FILE
+}
 
-# Link the object files into an executable
-echo "Linking object files into $BASE_NAME..."
-eval clang++ -o $CLANG_FLAGS "$BASE_NAME".o *.o || exit 1
-
-# Set up debug symbols
-dsymutil ./"$BASE_NAME".o
-
-# Run the program
-echo "Running $BASE_NAME..."
-./"$BASE_NAME".o
+run_cpp "$@"
