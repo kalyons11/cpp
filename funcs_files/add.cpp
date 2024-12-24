@@ -4,6 +4,7 @@
 using namespace std;
 
 #define KEY "value"
+#define ADD_DEF "here"
 
 int subtract(int x, int y)
 {

@@ -1,4 +1,5 @@
 #include <iostream>  // for std::cout
+#include "add.h"
 
 #define MY_NAME "Kevin"
 
@@ -40,10 +41,6 @@ int doubleNumber(int num)
 {
     return num * 2;
 }
-
-// Function declarations go here
-int add(int x, int y);
-int subtract(int x, int y);
 
 // Definition of function main()
 int main()
