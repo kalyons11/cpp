@@ -27,13 +27,6 @@ run_cpp() {
     clang-tidy "$CPP_FILE" -fix -fix-errors -- -std=c++20 || exit 1
   done
 
-  # Auto-fix style issues with clang-format for each .cpp file
-  echo "Running clang-format to auto-format all .cpp files..."
-  for CPP_FILE in $CPP_FILES; do
-    echo "Formatting $CPP_FILE with clang-format..."
-    clang-format -i "$CPP_FILE" || exit 1
-  done
-
   # Compile and link all .cpp files in one step
   echo "Compiling and linking all .cpp files into executable: $EXECUTABLE_FILE"
   clang++ $CLANG_FLAGS $CPP_FILES -o "$EXECUTABLE_FILE"
