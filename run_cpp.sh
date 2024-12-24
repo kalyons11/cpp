@@ -12,7 +12,7 @@ run_cpp() {
   SOURCE_FILE="$1"
   SOURCE_DIR=$(dirname "$SOURCE_FILE")
   BASE_NAME=$(basename "$SOURCE_FILE" .cpp)
-  EXECUTABLE_FILE="$BASE_NAME.o"
+  EXECUTABLE_FILE="$BASE_NAME.out"
 
   echo "Changing to source directory: $SOURCE_DIR"
   cd "$SOURCE_DIR" || { echo "Error: Failed to change directory to '$SOURCE_DIR'."; exit 1; }
