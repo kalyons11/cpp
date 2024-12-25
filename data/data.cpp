@@ -4,6 +4,7 @@
 
 #include "fixed_ints.h"
 #include "signed_ints.h"
+#include "floating_point.h"
 
 int main()
 {
@@ -42,8 +43,8 @@ int main()
     std::cout << "x is " << sizeof(x) << " bytes\n";
 
     print_int_info();
-
     print_fixed_ints();
+    describe_floats();
 
     return 0;
 }
