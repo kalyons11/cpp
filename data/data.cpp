@@ -2,9 +2,10 @@
 #include <iomanip>  // for std::setw (which sets the width of the subsequent output)
 #include <iostream>
 
+#include "booleans.h"
 #include "fixed_ints.h"
-#include "signed_ints.h"
 #include "floating_point.h"
+#include "signed_ints.h"
 
 int main()
 {
@@ -45,6 +46,7 @@ int main()
     print_int_info();
     print_fixed_ints();
     describe_floats();
+    dig_booleans();
 
     return 0;
 }
