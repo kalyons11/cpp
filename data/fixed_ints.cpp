@@ -30,7 +30,7 @@ void print_fixed_ints()
     std::cout << "fast 32: " << sizeof(std::int_fast32_t) * 8 << " bits\n";
 
     // Let's experiment with std::size_t
-    int temp{5};
+    int temp{6};
     std::size_t s{sizeof(temp)};
     std::cout << "Size of int with value 5 is: " << s << " bytes." << '\n';
 }
