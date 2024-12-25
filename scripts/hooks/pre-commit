@@ -34,15 +34,17 @@ if [ -n "$STAGED_FILES" ]; then
         echo "clang-tidy or clang-format failed. Aborting commit."
         exit 1
     fi
+
+    # Add formatted files back to the staging area if not empty
+    if [ -n "$STAGED_FILES" ]; then
+        git add $STAGED_FILES
+    fi
+
+    # Check if there are any unstaged changes (indicating formatting issues)
+    if ! git diff --exit-code; then
+        echo "Files were reformatted. Please review and stage changes."
+        exit 1
+    fi
 else
     echo "No staged .cpp or .h files to check or format."
-fi
-
-# Add formatted files back to the staging area
-git add $STAGED_FILES
-
-# Check if there are any unstaged changes (indicating formatting issues)
-if ! git diff --exit-code; then
-    echo "Files were reformatted. Please review and stage changes."
-    exit 1
 fi
