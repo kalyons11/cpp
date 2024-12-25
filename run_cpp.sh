@@ -20,10 +20,6 @@ run_cpp() {
   # Find all .cpp files in the same directory as the source file
   CPP_FILES=$(find . -maxdepth 1 -name "*.cpp")
 
-  # Auto-fix issues with clang-tidy for each .cpp file
-  echo "Running clang-tidy with auto-fix on all .cpp files..."
-  clang-tidy $CPP_FILES -fix -fix-errors -- -std=c++20 || exit 1
-
   # Compile and link all .cpp files in one step
   echo "Compiling and linking all .cpp files into executable: $EXECUTABLE_FILE"
   clang++ $CLANG_FLAGS $CPP_FILES -o "$EXECUTABLE_FILE"
