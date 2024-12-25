@@ -33,11 +33,11 @@ void do_conditionals()
 
     if (num % 2 == 0)
     {
-        std::cout << "The number is even.\n";
+        std::cout << "The given number is even.\n";
     }
     else
     {
-        std::cout << "The number is odd.\n";
+        std::cout << "The given number is odd.\n";
     }
 
     std::cout << "The absolute value of " << num << " is " << abs(num) << '\n';
