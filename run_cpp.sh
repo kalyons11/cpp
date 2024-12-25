@@ -22,10 +22,7 @@ run_cpp() {
 
   # Auto-fix issues with clang-tidy for each .cpp file
   echo "Running clang-tidy with auto-fix on all .cpp files..."
-  for CPP_FILE in $CPP_FILES; do
-    echo "Analyzing and fixing $CPP_FILE with clang-tidy..."
-    clang-tidy "$CPP_FILE" -fix -fix-errors -- -std=c++20 || exit 1
-  done
+  clang-tidy $CPP_FILES -fix -fix-errors -- -std=c++20 || exit 1
 
   # Compile and link all .cpp files in one step
   echo "Compiling and linking all .cpp files into executable: $EXECUTABLE_FILE"
