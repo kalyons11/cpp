@@ -3,6 +3,7 @@
 #include <iostream>
 
 #include "booleans.h"
+#include "conditionals.h"
 #include "fixed_ints.h"
 #include "floating_point.h"
 #include "signed_ints.h"
@@ -47,6 +48,7 @@ int main()
     print_fixed_ints();
     describe_floats();
     dig_booleans();
+    do_conditionals();
 
     return 0;
 }
