@@ -3,6 +3,7 @@
 #include <iostream>
 
 #include "booleans.h"
+#include "chars.h"
 #include "conditionals.h"
 #include "fixed_ints.h"
 #include "floating_point.h"
@@ -49,6 +50,7 @@ int main()
     describe_floats();
     dig_booleans();
     do_conditionals();
+    work_with_chars();
 
     return 0;
 }
