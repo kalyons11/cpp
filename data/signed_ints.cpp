@@ -17,5 +17,5 @@ void print_int_info()
     std::cout << x << '\n';
 
     // Integer division truncation
-    std::cout << 8 / 5 << '\n';
+    std::cout << 8 / 6 << '\n';
 }
