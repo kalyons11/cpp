@@ -1,5 +1,7 @@
-#include "floating_point.h"
+#include <iomanip>  // for output manipulator std::setprecision()
 #include <iostream>
+
+#include "floating_point.h"
 
 // Function to describe and print various floating point values
 void describe_floats()
@@ -29,4 +31,18 @@ void describe_floats()
     std::cout << 0.00123 << '\n';  // Small floating point number
     std::cout << -3.14 << '\n';    // Negative floating point number
     std::cout << 2.71827 << '\n';  // Another floating point number
+
+    // std::cout truncates to 6 decimal places by default
+    std::cout << 9.87654321f << '\n';
+    std::cout << 987.654321f << '\n';
+    std::cout << 987654.321f << '\n';
+    std::cout << 9876543.21f << '\n';
+    std::cout << 0.0000987654321f << '\n';
+
+    // Use an output manipulator to print more decimal places
+    std::cout << std::setprecision(17);  // show 17 digits of precision
+    std::cout << 3.33333333333333333333333333333333333333f
+              << '\n';  // f suffix means float
+    std::cout << 3.33333333333333333333333333333333333333
+              << '\n';  // no suffix means double
 }
