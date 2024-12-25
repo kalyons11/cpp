@@ -44,12 +44,6 @@ if [ -n "$STAGED_FILES" ]; then
         git add $STAGED_FILES
     fi
 
-    # Check if there are any unstaged changes (indicating formatting issues)
-    if ! git diff --cached --exit-code; then
-        echo "Files were reformatted. Please review and stage changes."
-        exit 1
-    fi
-
     # Check if there are any changes to commit
     if git diff --cached --quiet; then
         echo "No changes to commit. Aborting."

@@ -45,4 +45,46 @@ void describe_floats()
               << '\n';  // f suffix means float
     std::cout << 3.33333333333333333333333333333333333333
               << '\n';  // no suffix means double
+
+    // Be careful of significant digits
+    float tenner{123456789.0f};         // f has 10 significant digits
+    std::cout << std::setprecision(9);  // to show 9 digits in f
+    std::cout << tenner << '\n';        // prints 123456792, not 123456789
+
+    // Best practice:
+    // Use double for floating point calculations
+    // Favor double over float unless space is at a premium,
+    // as the lack of precision in a float will often lead to inaccuracies.
+
+    double other{0.1};
+    std::cout << other << '\n';  // use default cout precision of 6
+    std::cout << std::setprecision(17);
+    std::cout << other << '\n';
+
+    std::cout << std::setprecision(17);
+
+    double d1{1.0};
+    std::cout << d1 << '\n';
+
+    double d2{0.1 + 0.1 + 0.1 + 0.1 + 0.1 + 0.1 + 0.1 + 0.1 + 0.1 +
+              0.1};  // should equal 1.0
+    std::cout << d2 << '\n';
+    // This will print 0.99999999999999989, not 1.0
+
+    double zero{0.0};
+
+    double posinf{5.0 / zero};  // positive infinity
+    std::cout << posinf << '\n';
+
+    double neginf{-5.0 / zero};  // negative infinity
+    std::cout << neginf << '\n';
+
+    double z1{0.0 / posinf};  // positive zero
+    std::cout << z1 << '\n';
+
+    double z2{-0.0 / posinf};  // negative zero
+    std::cout << z2 << '\n';
+
+    double nan{zero / zero};  // not a number (mathematically invalid)
+    std::cout << nan << '\n';
 }
