@@ -1,0 +1,48 @@
+#!/bin/bash
+
+# Get the list of staged .cpp and .h files
+STAGED_FILES=$(git diff --cached --name-only --diff-filter=ACM | grep -E "\.(cpp|h)$")
+
+# Function to run clang-tidy and clang-format
+process_file() {
+    FILE=$1
+    echo "Processing $FILE"
+    if [[ $FILE == *.cpp ]]; then
+        clang-tidy "$FILE" -fix -fix-errors -- -std=c++20
+        TIDY_STATUS=$?
+    else
+        clang-tidy "$FILE" -fix -fix-errors --
+        TIDY_STATUS=$?
+    fi
+    clang-format -i "$FILE"
+    FORMAT_STATUS=$?
+    
+    if [ $TIDY_STATUS -ne 0 ] || [ $FORMAT_STATUS -ne 0 ]; then
+        exit 1
+    fi
+}
+
+export -f process_file
+
+# Run clang-tidy and clang-format on each staged file in parallel
+if [ -n "$STAGED_FILES" ]; then
+    echo "Running clang-tidy and clang-format on staged files..."
+    echo "$STAGED_FILES" | xargs -P4 -I{} bash -c 'process_file "{}"'
+    
+    # Check if any process_file invocation failed
+    if [ $? -ne 0 ]; then
+        echo "clang-tidy or clang-format failed. Aborting commit."
+        exit 1
+    fi
+else
+    echo "No staged .cpp or .h files to check or format."
+fi
+
+# Add formatted files back to the staging area
+git add $STAGED_FILES
+
+# Check if there are any unstaged changes (indicating formatting issues)
+if ! git diff --exit-code; then
+    echo "Files were reformatted. Please review and stage changes."
+    exit 1
+fi
