@@ -9,6 +9,7 @@
 #include "fixed_ints.h"
 #include "floating_point.h"
 #include "signed_ints.h"
+#include "tower.h"
 
 double get_double()
 {
@@ -102,6 +103,8 @@ int main()
     double dValue2{get_double()};
     char op{get_operator()};
     print_result(dValue, dValue2, op);
+
+    simulate_ball_fall();
 
     return 0;
 }
