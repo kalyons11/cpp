@@ -29,7 +29,9 @@ if [ $? -ne 0 ]; then
     exit 1
 fi
 
+echo "Changes added, committed, and pushed successfully."
+
 # Clean up git ignored files
 git clean -Xfd
 
-echo "Changes added, committed, and pushed successfully."
+echo "Cleaned up ignored files."
