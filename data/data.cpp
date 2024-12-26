@@ -10,6 +10,50 @@
 #include "floating_point.h"
 #include "signed_ints.h"
 
+double get_double()
+{
+    double d{};
+    std::cout << "Enter a double value: ";
+    std::cin >> d;
+    return d;
+}
+
+char get_operator()
+{
+    char op{};
+    std::cout << "Enter +, -, *, or /: ";
+    std::cin >> op;
+    return op;
+}
+
+void print_result(double dValue, double dValue2, char op)
+{
+    double result{};
+    if (op == '+')
+    {
+        result = dValue + dValue2;
+    }
+    else if (op == '-')
+    {
+        result = dValue - dValue2;
+    }
+    else if (op == '*')
+    {
+        result = dValue * dValue2;
+    }
+    else if (op == '/')
+    {
+        result = dValue / dValue2;
+    }
+    else
+    {
+        std::cout << "Invalid operator\n";
+    }
+    std::cout << std::setprecision(6);  // reset to default precision
+    std::cout << dValue << " " << op << " " << dValue2 << " = " << result
+              << '\n';
+}
+
 int main()
 {
     // Fundamental data types
@@ -53,6 +97,11 @@ int main()
     do_conditionals();
     work_with_chars();
     run_type_conversions();
+
+    double dValue{get_double()};
+    double dValue2{get_double()};
+    char op{get_operator()};
+    print_result(dValue, dValue2, op);
 
     return 0;
 }

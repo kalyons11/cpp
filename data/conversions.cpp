@@ -32,4 +32,14 @@ void run_type_conversions()
     unsigned int a{4294967295};
     int b{static_cast<int>(a)};
     std::cout << b << '\n';
+
+    // Fixed size integers can behave strangely
+    std::int8_t x{65};
+    std::cout << static_cast<int>(x) << '\n';  // 65
+
+    std::cout << "Enter a single character: ";
+    char ch{};
+    std::cin >> ch;
+    std::cout << "You entered: '" << ch << "', which has ASCII code "
+              << static_cast<int>(ch) << "." << '\n';
 }
