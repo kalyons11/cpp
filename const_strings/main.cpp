@@ -23,11 +23,11 @@ int main()
 
     const int constAge{age};
     std::cout << "Your age is: " << constAge << std::endl;
-    age = 30;  // This is allowed
+    // age = 30;  // This is allowed
     // constAge = 40; // This is not allowed
 
     printInt(5);
-    printInt(11);
+    printInt(12);
 
     return 0;
 }
