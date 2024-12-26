@@ -9,10 +9,10 @@ process_file() {
     echo "Processing $FILE"
     # Run clang-tidy with appropriate flags based on file extension
     if [[ $FILE == *.cpp ]]; then
-        clang-tidy "$FILE" -fix -fix-errors -- -std=c++20
+        clang-tidy "$FILE" --warnings-as-errors=* -fix -fix-errors -- -std=c++20
         TIDY_STATUS=$?
     else
-        clang-tidy "$FILE" -fix -fix-errors --
+        clang-tidy "$FILE" --warnings-as-errors=*-fix -fix-errors --
         TIDY_STATUS=$?
     fi
     # Run clang-format
