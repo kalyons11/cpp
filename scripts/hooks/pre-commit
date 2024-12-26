@@ -23,8 +23,8 @@ process_file() {
     
     # Exit if either clang-tidy or clang-format fails
     if [ $TIDY_STATUS -ne 0 ] || [ $FORMAT_STATUS -ne 0 ]; then
-        echo "Exiting process_file with status 1 due to clang-tidy or clang-format failure."
-        exit 1
+        echo "Exiting process_file with status 255 due to clang-tidy or clang-format failure."
+        exit 255
     fi
 }
 
