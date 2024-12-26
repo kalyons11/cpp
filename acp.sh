@@ -17,6 +17,7 @@ fi
 
 # Commit with the provided message
 git commit -m "$COMMIT_MESSAGE"
+echo "$?"
 if [ $? -ne 0 ]; then
     echo "Error: Failed to commit changes."
     exit 1

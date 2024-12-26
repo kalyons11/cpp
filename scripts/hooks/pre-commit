@@ -18,6 +18,8 @@ process_file() {
     # Run clang-format
     clang-format -i "$FILE"
     FORMAT_STATUS=$?
+
+    echo "TIDY_STATUS: $TIDY_STATUS"
     
     # Exit if either clang-tidy or clang-format fails
     if [ $TIDY_STATUS -ne 0 ] || [ $FORMAT_STATUS -ne 0 ]; then

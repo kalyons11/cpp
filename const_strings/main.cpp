@@ -27,7 +27,7 @@ int main()
     // constAge = 40; // This is not allowed
 
     printInt(5);
-    printInt(15);
+    printInt(14);
 
     return 0;
 }
