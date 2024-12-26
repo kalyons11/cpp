@@ -5,6 +5,7 @@
 #include "booleans.h"
 #include "chars.h"
 #include "conditionals.h"
+#include "conversions.h"
 #include "fixed_ints.h"
 #include "floating_point.h"
 #include "signed_ints.h"
@@ -51,6 +52,7 @@ int main()
     dig_booleans();
     do_conditionals();
     work_with_chars();
+    run_type_conversions();
 
     return 0;
 }
