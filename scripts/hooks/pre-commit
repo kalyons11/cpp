@@ -36,7 +36,7 @@ if [ -n "$STAGED_FILES" ]; then
     echo "Running clang-tidy and clang-format on staged files..."
     echo "$STAGED_FILES" | xargs -P4 -I{} bash -c 'process_file "{}"'
 
-    echo "$?"
+    echo "$? skljfsljf"
     
     # Check if any process_file invocation failed
     if [ $? -ne 0 ]; then
