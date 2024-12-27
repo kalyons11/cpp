@@ -1,5 +1,6 @@
 #include <iostream>
 
+#include "constexpr.h"
 #include "numerals.h"
 
 // Best practice: Don’t use const for value parameters, since it doesn’t provide
@@ -32,6 +33,8 @@ int main()
     printInt(12);
 
     print_numeral_systems();
+
+    output_constexpr();
 
     return 0;
 }
