@@ -1,6 +1,7 @@
 #include <bitset>
 #include <iostream>
 
+#include "manipulation.h"
 #include "operators.h"
 
 int main()
@@ -30,4 +31,5 @@ int main()
     std::cout << "Are all bits set? " << std::boolalpha << bits.all() << '\n';
 
     run_bitwise_operators();
+    run_manipulation_and_masks();
 }
