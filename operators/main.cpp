@@ -2,6 +2,7 @@
 
 #include "arithmetic.h"
 #include "exponentiation.h"
+#include "increment.h"
 
 int main()
 {
@@ -23,6 +24,7 @@ int main()
 
     show_arithmetic_operators();
     do_safe_exponentiation();
+    show_increment_decrement();
 
     return 0;
 }
