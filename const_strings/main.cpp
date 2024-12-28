@@ -2,6 +2,7 @@
 
 #include "constexpr.h"
 #include "numerals.h"
+#include "string.h"
 
 // Best practice: Don’t use const for value parameters, since it doesn’t provide
 // any benefit Also, don’t use const for return values, since it doesn’t provide
@@ -35,6 +36,8 @@ int main()
     print_numeral_systems();
 
     output_constexpr();
+
+    do_strings();
 
     return 0;
 }
