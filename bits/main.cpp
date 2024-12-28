@@ -3,6 +3,7 @@
 
 #include "manipulation.h"
 #include "operators.h"
+#include "quiz.h"
 
 int main()
 {
@@ -32,4 +33,5 @@ int main()
 
     run_bitwise_operators();
     run_manipulation_and_masks();
+    run_quiz();
 }
