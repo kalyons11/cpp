@@ -1,6 +1,7 @@
 #include <iostream>
 
 #include "arithmetic.h"
+#include "exponentiation.h"
 
 int main()
 {
@@ -21,6 +22,7 @@ int main()
     // evaluation of operands is unspecified.
 
     show_arithmetic_operators();
+    do_safe_exponentiation();
 
     return 0;
 }
