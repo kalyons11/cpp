@@ -2,6 +2,7 @@
 
 #include "constexpr.h"
 #include "numerals.h"
+#include "quiz.h"
 #include "string.h"
 #include "string_views.h"
 
@@ -38,6 +39,7 @@ int main()
     output_constexpr();
     do_strings();
     expose_string_views();
+    run_quiz();
 
     return 0;
 }

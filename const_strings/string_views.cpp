@@ -123,4 +123,24 @@ void expose_string_views()
     print_string_view(sv8);  // This will print "Goodbye, World!"
 
     std::cout << get_name_view(true) << '\n';  // Undefined behavior
+
+    // We can call view modifications on a string_view
+    std::string_view sv9{"Hello, World!"};
+    std::cout << sv9 << '\n';
+    sv9.remove_prefix(7);
+    std::cout << sv9 << '\n';  // This will print "World!"
+    sv9.remove_suffix(1);
+    std::cout << sv9 << '\n';  // This will print "World"
+    // We can reset the view
+    sv9 = "Hello, World!";
+    std::cout << sv9 << '\n';
+
+    // A C-style string literal and a std::string are always null-terminated
+    // A string_view may or may not be null-terminated
+    sv9.substr(
+        7);  // This will create a string_view that is not null-terminated
+    std::cout << sv9.substr(7) << '\n';  // This will print "World!"
+    sv9 = "Hello, World!";
+    sv9.substr(0, 2);
+    std::cout << sv9 << '\n';
 }
