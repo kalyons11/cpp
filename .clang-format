@@ -11,4 +11,5 @@ AlwaysBreakTemplateDeclarations: Yes
 Standard:        Cpp11
 SortIncludes:    true
 IncludeBlocks:   Preserve
+NamespaceIndentation: All
 ...

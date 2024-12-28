@@ -1,12 +1,12 @@
-namespace MyNamespace
+namespace MyNamespace  // namespace declaration
 {
-void my_function();
+    void my_function();
 
-namespace InnerNamespace
-{
-void inner_function();
-}
+    namespace InnerNamespace
+    {
+        void inner_function();
+    }
 
-// namespaces can have global variables
-int globalVariable{10};
+    // namespaces can have global variables
+    int globalVariable{10};
 }  // namespace MyNamespace
