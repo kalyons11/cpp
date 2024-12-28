@@ -1,7 +1,7 @@
 #include <iomanip>  // for output manipulator std::setprecision()
 #include <iostream>
 
-#include "floating_point.h"
+#include "floating_point.hpp"
 
 // Function to describe and print various floating point values
 void describe_floats()

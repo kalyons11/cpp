@@ -1,10 +1,10 @@
 #include <iostream>
 
-#include "constexpr.h"
-#include "numerals.h"
-#include "quiz.h"
-#include "string.h"
-#include "string_views.h"
+#include "constexpr.hpp"
+#include "numerals.hpp"
+#include "quiz.hpp"
+#include "string.hpp"
+#include "string_views.hpp"
 
 // Best practice: Don’t use const for value parameters, since it doesn’t provide
 // any benefit Also, don’t use const for return values, since it doesn’t provide

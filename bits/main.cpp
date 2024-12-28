@@ -1,9 +1,9 @@
 #include <bitset>
 #include <iostream>
 
-#include "manipulation.h"
-#include "operators.h"
-#include "quiz.h"
+#include "manipulation.hpp"
+#include "operators.hpp"
+#include "quiz.hpp"
 
 int main()
 {

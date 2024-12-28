@@ -2,14 +2,14 @@
 #include <iomanip>  // for std::setw (which sets the width of the subsequent output)
 #include <iostream>
 
-#include "booleans.h"
-#include "chars.h"
-#include "conditionals.h"
-#include "conversions.h"
-#include "fixed_ints.h"
-#include "floating_point.h"
-#include "signed_ints.h"
-#include "tower.h"
+#include "booleans.hpp"
+#include "chars.hpp"
+#include "conditionals.hpp"
+#include "conversions.hpp"
+#include "fixed_ints.hpp"
+#include "floating_point.hpp"
+#include "signed_ints.hpp"
+#include "tower.hpp"
 
 double get_double()
 {

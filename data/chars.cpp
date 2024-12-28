@@ -1,6 +1,6 @@
 #include <iostream>
 
-#include "chars.h"
+#include "chars.hpp"
 
 void work_with_chars()
 {

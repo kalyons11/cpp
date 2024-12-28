@@ -1,7 +1,7 @@
 #include <cstddef>
 #include <iostream>
 
-#include "fixed_ints.h"
+#include "fixed_ints.hpp"
 
 void print_fixed_ints()
 {

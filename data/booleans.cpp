@@ -1,4 +1,4 @@
-#include "booleans.h"
+#include "booleans.hpp"
 #include <iostream>
 
 // returns true if the given number is even, false otherwise

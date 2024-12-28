@@ -1,4 +1,4 @@
-#include "conditionals.h"
+#include "conditionals.hpp"
 #include <iostream>
 
 // Returns the absolute value of a number

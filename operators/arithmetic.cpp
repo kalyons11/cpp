@@ -1,6 +1,6 @@
 #include <iostream>
 
-#include "arithmetic.h"
+#include "arithmetic.hpp"
 
 void show_arithmetic_operators()
 {

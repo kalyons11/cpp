@@ -1,6 +1,6 @@
 #include <iostream>  // for std::cout
-#include "add.h"
-#include "add.h"  // This is safe now due to header guard
+#include "add.hpp"
+#include "add.hpp"  // This is safe now due to header guard
 
 #define MY_NAME "Kevin"
 

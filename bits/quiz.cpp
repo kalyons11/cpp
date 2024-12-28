@@ -2,7 +2,7 @@
 #include <cstdint>
 #include <iostream>
 
-#include "quiz.h"
+#include "quiz.hpp"
 
 void run_quiz()
 {

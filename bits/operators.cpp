@@ -1,6 +1,6 @@
 #include <iostream>
 
-#include "operators.h"
+#include "operators.hpp"
 
 // "rotl" stands for "rotate left"
 std::bitset<4> rotl(std::bitset<4> bits)

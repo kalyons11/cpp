@@ -1,7 +1,7 @@
 #include <bitset>
 #include <iostream>
 
-#include "numerals.h"
+#include "numerals.hpp"
 
 void print_numeral_systems()
 {

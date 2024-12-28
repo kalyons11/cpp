@@ -1,8 +1,8 @@
 #include <iostream>
 
-#include "arithmetic.h"
-#include "exponentiation.h"
-#include "increment.h"
+#include "arithmetic.hpp"
+#include "exponentiation.hpp"
+#include "increment.hpp"
 
 int main()
 {

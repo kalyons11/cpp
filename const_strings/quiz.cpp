@@ -1,7 +1,7 @@
 #include <iostream>
 #include <string>
 
-#include "quiz.h"
+#include "quiz.hpp"
 
 std::string get_name(int person_number)
 {

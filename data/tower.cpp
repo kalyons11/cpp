@@ -1,6 +1,6 @@
 #include <iostream>
 
-#include "tower.h"
+#include "tower.hpp"
 
 double get_height()
 {
