@@ -1,6 +1,8 @@
 #include <bitset>
 #include <iostream>
 
+#include "operators.h"
+
 int main()
 {
     // 8 bits in size
@@ -26,4 +28,6 @@ int main()
     std::cout << "Are any bits set? " << std::boolalpha << bits.any() << '\n';
     std::cout << "Are no bits set? " << std::boolalpha << bits.none() << '\n';
     std::cout << "Are all bits set? " << std::boolalpha << bits.all() << '\n';
+
+    run_bitwise_operators();
 }
