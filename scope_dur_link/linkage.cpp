@@ -15,6 +15,8 @@
 [[maybe_unused]] constexpr int g_z{
     5};  // constexpr variables have internal linkage by default
 
+extern const int g_externConst{5};  // define an external const variable
+
 void show_linkage()
 {
     std::cout << "g_globalVariable: " << g_globalVariable << '\n';
