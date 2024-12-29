@@ -9,9 +9,8 @@ add_header_guard() {
     if ! grep -q "#ifndef $GUARD_NAME" "$FILE"; then
         echo "Adding header guard to $FILE"
         # Add header guard to the file
-        sed -i.bak "1i#ifndef $GUARD_NAME\n#define $GUARD_NAME\n" "$FILE"
+        printf "#ifndef $GUARD_NAME\n#define $GUARD_NAME\n\n" | cat - "$FILE" > temp && mv temp "$FILE"
         echo -e "\n#endif // $GUARD_NAME" >> "$FILE"
-        rm "${FILE}.bak"
     else
         echo "Header guard already exists in $FILE"
     fi
