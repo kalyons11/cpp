@@ -18,4 +18,16 @@ int main()
     {
         std::cout << "The number is less than " << target << "." << '\n';
     }
+
+    // We can use constexpr with conditionals
+    constexpr double gravity{9.8};
+    if constexpr (gravity > 9.0)
+    {
+        std::cout << "The gravity is greater than 9.0." << '\n';
+    }
+    else
+    {
+        // This block is not compiled because gravity is greater than 9.0
+        std::cout << "The gravity is less than or equal to 9.0." << '\n';
+    }
 }
