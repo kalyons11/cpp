@@ -22,6 +22,11 @@ if [ $? -ne 0 ]; then
     exit 1
 fi
 
+# Clean up git ignored files
+git clean -Xfd
+
+echo "Cleaned up ignored files."
+
 # Push the changes
 NO_PUSH=$2
 if [ "$NO_PUSH" = "--no-push" ]; then
@@ -37,8 +42,3 @@ if [ $? -ne 0 ]; then
 fi
 
 echo "Changes added, committed, and pushed successfully."
-
-# Clean up git ignored files
-git clean -Xfd
-
-echo "Cleaned up ignored files."
