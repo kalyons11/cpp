@@ -17,4 +17,14 @@
 
 void show_linkage()
 {
+    std::cout << "g_globalVariable: " << g_globalVariable << '\n';
+    std::cout << "g_globalVariable2: " << g_globalVariable2 << '\n';
+    std::cout << "g_x: " << g_x << '\n';
+    std::cout << "g_y: " << g_y << '\n';
+    std::cout << "g_z: " << g_z << '\n';
+}
+
+[[maybe_unused]] static void show_internal_linkage()
+{
+    std::cout << "This function has internal linkage\n";
 }

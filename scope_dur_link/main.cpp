@@ -80,6 +80,8 @@ int main()
                                     // linkage.cpp with external linkage
     // std::cout(g_globalVariable2);  // Error: g_globalVariable2 is not
     // accessible
+    // show_internal_linkage();  // Error: show_internal_linkage() is not
+    // accessible
 
     return 0;
 }
