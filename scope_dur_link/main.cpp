@@ -20,6 +20,20 @@ void print()
     std::cout << "Hello, World!" << '\n';
 }
 
+int expensive_function()
+{
+    return 42;
+}
+
+int generateID()
+{
+    static const int stat{
+        expensive_function()};  // s_id is only initialized once and is const
+    std::cout << stat << '\n';
+    static int s_id{0};  // s_id is only initialized once
+    return s_id++;
+}
+
 namespace Foo  // define a namespace named Foo
 {
     // This doSomething() belongs to namespace Foo
@@ -76,12 +90,17 @@ int main()
 
     show_linkage();
 
-    std::cout << g_globalVariable;  // use the global variable that exists in
-                                    // linkage.cpp with external linkage
+    std::cout << g_globalVariable
+              << '\n';  // use the global variable that exists in
+                        // linkage.cpp with external linkage
     // std::cout(g_globalVariable2);  // Error: g_globalVariable2 is not
     // accessible
     // show_internal_linkage();  // Error: show_internal_linkage() is not
     // accessible
+
+    std::cout << generateID() << '\n';  // 0
+    std::cout << generateID() << '\n';  // 1
+    std::cout << generateID() << '\n';  // 2
 
     return 0;
 }
