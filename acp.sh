@@ -26,6 +26,7 @@ fi
 NO_PUSH=$2
 if [ "$NO_PUSH" = "--no-push" ]; then
     echo "Changes added and committed successfully."
+    echo "Push skipped."
     exit 0
 fi
 

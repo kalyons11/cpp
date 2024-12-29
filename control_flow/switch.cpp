@@ -2,6 +2,24 @@
 
 #include "switch.hpp"
 
+int calculate(int x, int y, char operation)
+{
+    switch (operation)
+    {
+    case '+':
+        return x + y;
+    case '-':
+        return x - y;
+    case '*':
+        return x * y;
+    case '/':
+        return x / y;
+    default:
+        std::cout << "Invalid operation." << '\n';
+        return 0;
+    }
+}
+
 void show_switch()
 {
     std::cout << "Let's talk about switch statements." << '\n';
@@ -23,8 +41,16 @@ void show_switch()
     case 3:
         std::cout << "You entered 3." << '\n';
         break;
+    case 4:
+    case 5:
     default:
         std::cout << "You entered a number that is not 1, 2, or 3." << '\n';
         break;
     }
+
+    std::cout << "Enter two numbers and an operation (+, -, *, /): ";
+    int x{}, y{};
+    char operation{};
+    std::cin >> x >> y >> operation;
+    std::cout << "Result: " << calculate(x, y, operation) << '\n';
 }
