@@ -1,5 +1,7 @@
 #include <iostream>
 
+#include "switch.hpp"
+
 int main()
 {
     std::cout << "Let's talk about control flow." << '\n';
@@ -30,4 +32,6 @@ int main()
         // This block is not compiled because gravity is greater than 9.0
         std::cout << "The gravity is less than or equal to 9.0." << '\n';
     }
+
+    show_switch();
 }

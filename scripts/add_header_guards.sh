@@ -11,8 +11,6 @@ add_header_guard() {
         # Add header guard to the file
         printf "#ifndef $GUARD_NAME\n#define $GUARD_NAME\n\n" | cat - "$FILE" > temp && mv temp "$FILE"
         echo -e "\n#endif // $GUARD_NAME" >> "$FILE"
-    else
-        echo "Header guard already exists in $FILE"
     fi
 }
 

@@ -1,5 +1,8 @@
 #!/bin/bash
 
+# Add header guards to all .hpp files
+./scripts/add_header_guards.sh
+
 # Get the list of staged .cpp and .h files
 STAGED_FILES=$(git diff --cached --name-only --diff-filter=ACM | grep -E "\.(cpp|hpp)$")
 
