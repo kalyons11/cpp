@@ -23,6 +23,12 @@ if [ $? -ne 0 ]; then
 fi
 
 # Push the changes
+NO_PUSH=$2
+if [ "$NO_PUSH" = "--no-push" ]; then
+    echo "Changes added and committed successfully."
+    exit 0
+fi
+
 git push
 if [ $? -ne 0 ]; then
     echo "Error: Failed to push changes."

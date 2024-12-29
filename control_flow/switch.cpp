@@ -16,8 +16,10 @@ void show_switch()
         std::cout << "You entered 1." << '\n';
         break;
     case 2:
-        std::cout << "You entered 2." << '\n';
-        break;
+        // We can use a fallthrough attribute to go to the next case
+        std::cout << "You entered 2, and I'm falling through to the next case."
+                  << '\n';
+        [[fallthrough]];
     case 3:
         std::cout << "You entered 3." << '\n';
         break;
