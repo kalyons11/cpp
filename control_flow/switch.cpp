@@ -10,19 +10,19 @@ void show_switch()
     int number{};
     std::cin >> number;
 
-    switch (number)
+    switch (number)  // Must evaluate to an integer or an enumeration type
     {
-        case 1:
-            std::cout << "You entered 1." << '\n';
-            break;
-        case 2:
-            std::cout << "You entered 2." << '\n';
-            break;
-        case 3:
-            std::cout << "You entered 3." << '\n';
-            break;
-        default:
-            std::cout << "You entered a number that is not 1, 2, or 3." << '\n';
-            break;
+    case 1:
+        std::cout << "You entered 1." << '\n';
+        break;
+    case 2:
+        std::cout << "You entered 2." << '\n';
+        break;
+    case 3:
+        std::cout << "You entered 3." << '\n';
+        break;
+    default:
+        std::cout << "You entered a number that is not 1, 2, or 3." << '\n';
+        break;
     }
 }
