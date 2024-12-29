@@ -30,8 +30,7 @@ echo "Cleaned up ignored files."
 # Push the changes
 NO_PUSH=$2
 if [ "$NO_PUSH" = "--no-push" ]; then
-    echo "Changes added and committed successfully."
-    echo "Push skipped."
+    echo "Changes added and committed successfully. Push skipped."
     exit 0
 fi
 
