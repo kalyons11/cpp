@@ -1,5 +1,6 @@
 #include <iostream>
 
+#include "linkage.hpp"
 #include "name.hpp"
 
 [[maybe_unused]] int globalVariable{5};  // define a global variable
@@ -21,31 +22,31 @@ void print()
 
 namespace Foo  // define a namespace named Foo
 {
-// This doSomething() belongs to namespace Foo
-int doSomething(int x, int y)
-{
-    return x + y;
-}
+    // This doSomething() belongs to namespace Foo
+    int doSomething(int x, int y)
+    {
+        return x + y;
+    }
 
-void print()
-{
-    std::cout << "Hello, Foo!" << '\n';
-}
+    void print()
+    {
+        std::cout << "Hello, Foo!" << '\n';
+    }
 
-void print_all()
-{
-    print();    // call the print() that exists in namespace Foo
-    ::print();  // call the print() that exists in the global namespace
-}
+    void print_all()
+    {
+        print();    // call the print() that exists in namespace Foo
+        ::print();  // call the print() that exists in the global namespace
+    }
 }  // namespace Foo
 
 namespace Goo  // define a namespace named Goo
 {
-// This doSomething() belongs to namespace Goo
-int doSomething(int x, int y)
-{
-    return x - y;
-}
+    // This doSomething() belongs to namespace Goo
+    int doSomething(int x, int y)
+    {
+        return x - y;
+    }
 }  // namespace Goo
 
 int main()
@@ -72,6 +73,13 @@ int main()
     std::cout << MyNamespace::globalVariable
               << '\n';  // use the global variable that exists in namespace
                         // MyNamespace
+
+    show_linkage();
+
+    std::cout << g_globalVariable;  // use the global variable that exists in
+                                    // linkage.cpp with external linkage
+    // std::cout(g_globalVariable2);  // Error: g_globalVariable2 is not
+    // accessible
 
     return 0;
 }
