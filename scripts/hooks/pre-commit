@@ -20,6 +20,7 @@ process_file() {
         echo "Exiting process_file due to clang-tidy or clang-format failure."
         exit 255
     fi
+    echo "Both clang-tidy and clang-format passed for $FILE"
 }
 
 # Export the function to be used by xargs

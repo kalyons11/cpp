@@ -1,6 +1,6 @@
 #include <iostream>
 
-#include "goto.h"
+#include "goto.hpp"
 #include "switch.hpp"
 
 int main()

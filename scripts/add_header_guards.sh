@@ -23,4 +23,4 @@ done
 find . -type f -name '*.h' -exec bash -c 'git mv "$0" "${0%.h}.hpp"' {} \;
 
 # Replace any "include.h" with "include.hpp" in *.cpp files
-find . -type f -name "*.cpp" -exec sed -i 's/\.h"/.hpp"/g' {} \;
+find . -type f -name "*.cpp" -exec sed -i '' 's/\.h"/.hpp"/g' {} \;
