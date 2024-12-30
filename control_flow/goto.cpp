@@ -2,6 +2,25 @@
 
 #include "goto.hpp"
 
+// goto should really only be used in very specific cases,
+// like jumping out of a nested loop
+void show_goto_nested_loop()
+{
+    for (int i{0}; i < 10; ++i)
+    {
+        for (int j{0}; j < 10; ++j)
+        {
+            if (i == 5 && j == 5)
+            {
+                std::cout << "Jumping out of the nested loop.\n";
+                goto exitLoop;
+            }
+        }
+    }
+exitLoop:;
+    std::cout << "Exited the nested loop.\n";
+}
+
 // goto statements can also be used to jump forward
 void show_jump_forward(bool skip)
 {
@@ -31,4 +50,5 @@ tryAgain:
 
     show_jump_forward(true);
     show_jump_forward(false);
+    show_goto_nested_loop();
 }
