@@ -1,10 +1,11 @@
 #include <iostream>
+
+#include "default.hpp"
 #include "overload.hpp"
 
 int main()
 {
-    std::cout << "Hello, this is a sample message from project: "
-              << "again_funcs" << '\n';
     show_overload();
+    show_default_args();
     return 0;
 }
