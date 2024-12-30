@@ -40,4 +40,24 @@ void run_random_numbers()
             std::cout << '\n';
         }
     }
+
+    // Use a seed sequence with random_device to seed the mt
+    std::random_device rd{};
+    std::seed_seq seed{rd(), rd(), rd(), rd(), rd(), rd(), rd(), rd()};
+    std::mt19937 mt3{seed};
+    // Use this to generate random cards from a deck
+    std::uniform_int_distribution<int> dist3(0, 51);
+    std::cout << "Printing 10 random cards from a deck:" << '\n';
+    for (int i = 0; i < 10; ++i)
+    {
+        // Map the random number to a card
+        int card = dist3(mt3);
+        int suit = card / 13;
+        int rank = card % 13;
+        // Hearts, Diamonds, Clubs, Spades
+        std::string symbols[] = {"\u2665", "\u2666", "\u2663", "\u2660"};
+        std::string ranks[] = {"Ace", "2", "3",  "4",    "5",     "6",   "7",
+                               "8",   "9", "10", "Jack", "Queen", "King"};
+        std::cout << ranks[rank] << " of " << symbols[suit] << '\n';
+    }
 }
