@@ -1,6 +1,6 @@
 #include <iostream>
 
-#include "goto.h"
+#include "goto.hpp"
 
 void show_goto()
 {
