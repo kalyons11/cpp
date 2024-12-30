@@ -20,7 +20,15 @@ add_header_guard() {
     fi
 }
 
-# Find all header files and add header guards
-find . -type f -name "*.hpp" -o -name "*.h" | while read -r FILE; do
+# If arguments are provided, use them as the list of files
+if [ "$#" -gt 0 ]; then
+    FILES="$@"
+else
+    # Find all header files if no arguments are provided
+    FILES=$(find . -type f -name "*.hpp" -o -name "*.h")
+fi
+
+# Add header guards to the specified files
+for FILE in $FILES; do
     add_header_guard "$FILE"
 done

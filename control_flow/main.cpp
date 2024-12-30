@@ -3,6 +3,7 @@
 #include "goto.hpp"
 #include "halt.hpp"
 #include "loops.hpp"
+#include "random.hpp"
 #include "switch.hpp"
 
 int main()
@@ -40,6 +41,7 @@ int main()
     show_goto();
     run_loops();
     show_halting();
+    run_random_numbers();
 
     return 0;
 }
