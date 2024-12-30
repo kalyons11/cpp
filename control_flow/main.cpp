@@ -1,5 +1,6 @@
 #include <iostream>
 
+#include "goto.h"
 #include "switch.hpp"
 
 int main()
@@ -34,4 +35,5 @@ int main()
     }
 
     show_switch();
+    show_goto();
 }

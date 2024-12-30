@@ -18,3 +18,6 @@ add_header_guard() {
 find . -type f -name "*.hpp" -o -name "*.h" | while read -r FILE; do
     add_header_guard "$FILE"
 done
+
+# Also rename to .hpp
+find . -type f -name '*.h' -exec bash -c 'git mv "$0" "${0%.h}.hpp"' {} \;
