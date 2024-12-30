@@ -40,8 +40,9 @@ int main()
     show_switch();
     show_goto();
     run_loops();
-    show_halting();
     run_random_numbers();
+    show_halting();  // Must be the last function called since it halts the
+                     // program
 
     return 0;
 }
