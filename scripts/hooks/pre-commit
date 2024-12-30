@@ -21,7 +21,6 @@ process_file() {
     fi
 
     # Check if clang-tidy produced any errors
-    cat fixes.yaml
     if [ -s fixes.yaml ]; then
         TIDY_STATUS=1
     fi
