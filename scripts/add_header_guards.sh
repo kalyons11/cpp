@@ -1,5 +1,11 @@
 #!/bin/bash
 
+# Also rename to .hpp
+find . -type f -name '*.h' -exec bash -c 'git mv "$0" "${0%.h}.hpp"' {} \;
+
+# Replace any "include.h" with "include.hpp" in *.cpp files
+find . -type f -name "*.cpp" -exec sed -i '' 's/\.h"/.hpp"/g' {} \;
+
 # Function to add header guard to a file
 add_header_guard() {
     FILE=$1
@@ -18,9 +24,3 @@ add_header_guard() {
 find . -type f -name "*.hpp" -o -name "*.h" | while read -r FILE; do
     add_header_guard "$FILE"
 done
-
-# Also rename to .hpp
-find . -type f -name '*.h' -exec bash -c 'git mv "$0" "${0%.h}.hpp"' {} \;
-
-# Replace any "include.h" with "include.hpp" in *.cpp files
-find . -type f -name "*.cpp" -exec sed -i '' 's/\.h"/.hpp"/g' {} \;
