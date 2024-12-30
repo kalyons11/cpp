@@ -53,5 +53,5 @@ if [ -n "$STAGED_FILES" ]; then
         exit 1
     fi
 else
-    echo "No staged .cpp or .h files to check or format."
+    echo "No staged .cpp or .hpp files to check or format."
 fi
