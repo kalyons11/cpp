@@ -1,6 +1,7 @@
 #include <iostream>
 
 #include "goto.hpp"
+#include "halt.hpp"
 #include "loops.hpp"
 #include "switch.hpp"
 
@@ -38,4 +39,7 @@ int main()
     show_switch();
     show_goto();
     run_loops();
+    show_halting();
+
+    return 0;
 }
