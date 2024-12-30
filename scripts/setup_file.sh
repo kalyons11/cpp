@@ -25,8 +25,6 @@ void ${FUNCTION_NAME}() {
 }
 EOL
 
-./scripts/add_header_guards.sh "${FILE_NAME}.hpp"
-
 echo "Files ${FILE_NAME}.hpp and ${FILE_NAME}.cpp have been created."
 
 # Find the main.cpp file in the same directory as FILE_NAME
