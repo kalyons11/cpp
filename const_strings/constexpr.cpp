@@ -19,7 +19,7 @@ void output_constexpr()
     // in a constant expression constexpr int f{five()}; // Error: the value of
     // ‘five()’ is not usable in a constant expression
 
-    std::cout << "Gravity: " << gravity << std::endl;
+    std::cout << "Gravity: " << gravity << '\n';
 
     [[maybe_unused]] constexpr double d{
         1.2};  // d can be used in constant expressions!

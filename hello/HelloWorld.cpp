@@ -17,8 +17,8 @@ int main()
     // [[maybe_unused]] int bad { 4.5 };
 
     // Using the insertion operator
-    std::cout << "The number 4: " << 4 << std::endl;
-    // Prefer \n over std::endl when outputting text to the console.
+    std::cout << "The number 4: " << 4 << '\n';
+    // Prefer \n over '\n' when outputting text to the console.
     // This avoid unnecessary flushing
 
     // Using the extraction operator

@@ -4,10 +4,10 @@
 
 void work_with_chars()
 {
-    std::cout << "Working with chars" << std::endl;
+    std::cout << "Working with chars" << '\n';
 
     char c = 'A';
-    std::cout << "c: " << c << std::endl;
+    std::cout << "c: " << c << '\n';
 
     [[maybe_unused]] char ch2{'a'};  // initialize with code point for 'a'
                                      // (stored as integer 97) (preferred)

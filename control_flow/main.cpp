@@ -1,6 +1,7 @@
 #include <iostream>
 
 #include "goto.hpp"
+#include "loops.hpp"
 #include "switch.hpp"
 
 int main()
@@ -36,4 +37,5 @@ int main()
 
     show_switch();
     show_goto();
+    run_loops();
 }

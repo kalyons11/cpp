@@ -11,7 +11,7 @@
 // any benefit
 void printInt(const int value)
 {
-    std::cout << value << std::endl;
+    std::cout << value << '\n';
 }
 
 int main()
@@ -19,7 +19,7 @@ int main()
     // Make variables constant whenever possible
     // Prefer constant variables over object-like macros with substitution text
     const char* str = "Hello, World!";
-    std::cout << str << std::endl;
+    std::cout << str << '\n';
 
     [[maybe_unused]] const double gravity{9.8};
 
@@ -28,7 +28,7 @@ int main()
     std::cin >> age;
 
     const int constAge{age};
-    std::cout << "Your age is: " << constAge << std::endl;
+    std::cout << "Your age is: " << constAge << '\n';
     // age = 30;  // This is allowed
     // constAge = 40; // This is not allowed
 
