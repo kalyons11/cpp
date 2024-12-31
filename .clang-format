@@ -9,7 +9,12 @@ AllowShortFunctionsOnASingleLine: InlineOnly
 BreakBeforeBraces: Allman
 AlwaysBreakTemplateDeclarations: Yes
 Standard:        Cpp11
-SortIncludes:    true
+SortIncludes: true
+IncludeCategories:
+  - Regex: '^<.*>$'  # External headers (e.g., standard library or system headers)
+    Priority: 1
+  - Regex: '.*'  # Catch-all for other includes
+    Priority: 2
 IncludeBlocks:   Preserve
 NamespaceIndentation: All
 BraceWrapping:
