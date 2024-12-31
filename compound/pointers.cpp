@@ -1,6 +1,24 @@
+#include <cassert>
 #include <iostream>
 
 #include "pointers.hpp"
+
+void print_by_address(const int* ptr)
+{
+    std::cout << "Value at memory address: " << *ptr << '\n';
+}
+
+// Passing by address allows the function to modify the value of the argument
+void increment_by_address(int* ptr)
+{
+    // Add null check
+    assert(ptr && "Null pointer passed to increment_by_address");
+    if (!ptr)
+    {
+        return;
+    }
+    *ptr += 1;
+}
 
 void start_pointers()
 {
@@ -83,4 +101,62 @@ void start_pointers()
     // ptr_z is now a dangling pointer because it points to a memory address
     // that has been deallocated (another_z)
     // std::cout << *ptr_z << '\n';  // Undefined behavior
+
+    // We can create a null pointer with empty value initialization
+    int* nullPtr{};
+    int test{5};
+    nullPtr = &test;
+    std::cout << *nullPtr << '\n';  // 5
+
+    // We can use nullptr to create a null pointer
+    int* nullPtr2{nullptr};
+    std::cout << nullPtr2 << '\n';  // 0
+    // Dereferencing a null pointer is undefined behavior
+    // std::cout << *nullPtr2 << '\n';  // Undefined behavior - segmentation
+    // fault
+
+    // We can check to see if a pointer is null before dereferencing it
+    // if (nullPtr2 != nullptr)
+    if (nullPtr2)  // We can use implicit conversion to bool
+    {
+        std::cout << *nullPtr2 << '\n';  // 0
+    }
+
+    // We need to use const to declare a pointer to a constant value
+    const int value{5};
+    const int* ptr_value{&value};
+    std::cout << *ptr_value << '\n';  // 5
+    // *ptr_value = 10;  // Error - cannot modify a const value
+    int another_value{10};
+    ptr_value = &another_value;       // OK - pointer is not const itself
+    std::cout << *ptr_value << '\n';  // 10
+
+    // We can make the pointer itself const by using const after the *
+    int value2{5};
+    int* const ptr_value2{&value2};
+    *ptr_value2 = 10;  // OK - can modify the value
+    // ptr_value2 = &another_value;  // Error - cannot modify a const pointer
+    std::cout << *ptr_value2 << '\n';  // 10
+
+    // We can make both the pointer and the value const
+    const int value3{5};
+    const int* const ptr_value3{&value3};
+    // *ptr_value3 = 10;  // Error - cannot modify a const value
+    // ptr_value3 = &another_value;  // Error - cannot modify a const pointer
+    std::cout << *ptr_value3 << '\n';  // 5
+
+    // We can use pointers to pass arguments by reference
+    const int number2{5};
+    const int* ptr_number2{&number2};
+    const int& ref_number2{number2};
+    print_by_address(ptr_number2);  // Value at memory address: 5
+    std::cout << "Value of number2: " << ref_number2 << '\n';  // 5
+
+    int number3{5};
+    int* ptr_number3{&number3};
+    increment_by_address(ptr_number3);  // Increment by address
+    std::cout << "Value of number3: " << number3 << '\n';  // 6
+
+    // increment_by_address(nullptr);  // Null check should prevent incrementing
+    // and a segmentation fault
 }
