@@ -17,11 +17,15 @@ process_file() {
 
     # Exit if either clang-tidy or clang-format fails
     if [ $TIDY_STATUS -ne 0 ] || [ $FORMAT_STATUS -ne 0 ]; then
+        echo "clang-tidy or clang-format failed for $FILE. Aborting commit."
+        echo "tidy status: $TIDY_STATUS, format status: $FORMAT_STATUS"
         exit 1
     fi
 
     # Check if clang-tidy produced any errors
     if [ -s fixes.yaml ]; then
+        echo "clang-tidy produced errors for $FILE. Aborting commit."
+        cat fixes.yaml
         TIDY_STATUS=1
     fi
     rm -f fixes.yaml
