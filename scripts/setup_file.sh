@@ -8,6 +8,12 @@ fi
 FILE_NAME=$1
 FUNCTION_NAME=$2
 
+# Terminate if the file already exists
+if [ -f "${FILE_NAME}.cpp" ] || [ -f "${FILE_NAME}.hpp" ]; then
+    echo "File ${FILE_NAME}.cpp or ${FILE_NAME}.hpp already exists."
+    exit 1
+fi
+
 # Create the .hpp file
 cat <<EOL > "${FILE_NAME}.hpp"
 void ${FUNCTION_NAME}();
@@ -47,3 +53,5 @@ else
     echo "main.cpp not found in ${MAIN_CPP_DIR}."
 fi
 
+# Open the newly created files in VS Code
+code "${FILE_NAME}.cpp" "${FILE_NAME}.hpp"
