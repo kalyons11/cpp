@@ -1,8 +1,8 @@
 #include <iostream>
-#include "pointers.hpp"
 
 #include "intro.hpp"
 #include "lval_refs.hpp"
+#include "pointers.hpp"
 
 int main()
 {
