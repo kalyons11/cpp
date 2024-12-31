@@ -20,6 +20,29 @@ void increment_by_address(int* ptr)
     *ptr += 1;
 }
 
+// We can take in a reference to a pointer to be able to update where the
+// pointer points
+void update_pointer(int*& ptr)
+{
+    // static int value{10};
+    // ptr = &value;
+}
+
+// We can use std::nullptr_t to require a null pointer
+void operate_null_pointer([[maybe_unused]] std::nullptr_t ptr)
+{
+    std::cout << "Null pointer passed to operate_null_pointer" << '\n';
+}
+
+// We can return by reference to avoid an expensive copy back to the caller
+std::string& get_string()
+{
+    static std::string str{"Hello, World!"};
+    // it's critical that str is not destroyed when the function ends, hence the
+    // static keyword
+    return str;
+}
+
 void start_pointers()
 {
     // We can use the & operator to get the memory address of a variable
@@ -159,4 +182,26 @@ void start_pointers()
 
     // increment_by_address(nullptr);  // Null check should prevent incrementing
     // and a segmentation fault
+
+    // Prefer pass by reference to pointers when possible
+    // This is because references are safer and more readable
+    // Use pointers when you need to reassign the pointer to point to a
+    // different object Use pointers when you need to pass a null value Use
+    // pointers when you need to pass an array
+
+    // We can use references to pointers to update the pointer itself
+    int value4{5};
+    int* ptr_value4{&value4};
+    std::cout << *ptr_value4 << '\n';  // 5
+    update_pointer(ptr_value4);
+    std::cout << *ptr_value4 << '\n';  // 10
+    std::cout << value4 << '\n';       // Still 5
+
+    operate_null_pointer(
+        nullptr);  // Null pointer passed to operate_null_pointer
+    // operate_null_pointer(ptr_value4);  // Error - cannot convert int* to
+    // nullptr_t
+
+    std::string& str{get_string()};
+    std::cout << str << '\n';  // Hello, World!
 }
