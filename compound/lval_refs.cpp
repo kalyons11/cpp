@@ -14,6 +14,15 @@ void add_one(int& x)  // x must be modifiable
     x += 1;  // This will modify the value of the object passed to add_one
 }
 
+// Using a const reference parameter can avoid copying large objects and allows
+// more flexibility in the types of objects that can be passed to the function
+void print_arg(const int& arg)
+{
+    // Modifying arg here would cause a compilation error
+    // arg += 1; // error: assignment of read-only reference 'arg'
+    std::cout << arg << '\n';
+}
+
 void run_lval_refs()
 {
     // A reference is an alias to an existing object
@@ -142,4 +151,8 @@ void run_lval_refs()
     // Reference parameters must be modifiable
     const int const_num{5};
     // add_one(const_num); // error: cannot bind non-const lvalue reference
+
+    print_arg(42);         // 42
+    print_arg(num);        // 6
+    print_arg(const_num);  // 5
 }
