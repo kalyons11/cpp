@@ -1,4 +1,5 @@
 #include <iostream>
+#include "pointers.hpp"
 
 #include "intro.hpp"
 #include "lval_refs.hpp"
@@ -9,5 +10,6 @@ int main()
               << '\n';
     show_basics();
     run_lval_refs();
+    start_pointers();
     return 0;
 }
