@@ -61,4 +61,26 @@ void start_pointers()
     std::cout << y << '\n';       // 15
     std::cout << ref << '\n';     // 15
     std::cout << *ptr_y << '\n';  // 15
+
+    char* chPtr{};         // chars are 1 byte
+    int* iPtr{};           // ints are usually 4 bytes
+    long double* ldPtr{};  // long doubles are usually 8 or 12 bytes
+
+    std::cout << sizeof(chPtr) << '\n';  // prints 4
+    std::cout << sizeof(iPtr) << '\n';   // prints 4
+    std::cout << sizeof(ldPtr) << '\n';  // prints 4
+
+    // Dangling pointers occur when a pointer points to a memory address that
+    // has been deallocated
+    // int z{5};
+    // int* ptr_z{&z};
+    // std::cout << *ptr_z << '\n';  // 5
+    // {
+    //     int another_z{10};
+    //     ptr_z = &another_z;
+    //     std::cout << *ptr_z << '\n';  // 10
+    // }
+    // ptr_z is now a dangling pointer because it points to a memory address
+    // that has been deallocated (another_z)
+    // std::cout << *ptr_z << '\n';  // Undefined behavior
 }
