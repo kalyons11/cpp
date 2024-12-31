@@ -33,6 +33,13 @@ export -f process_file
 
 # Run clang-tidy and clang-format on each staged file in parallel
 if [ -n "$STAGED_FILES" ]; then
+    # Replace std::endl with '\n' in all staged .cpp/.hpp files
+    sed -i '' 's/std::endl/\'"'"'\\n\'"'"'/g' $STAGED_FILES
+    if [ $? -ne 0 ]; then
+        echo "Failed to replace std::endl with '\\n'. Aborting commit."
+        exit 1
+    fi
+
     echo "Running clang-tidy and clang-format on staged files..."
     for FILE in $STAGED_FILES; do
         process_file "$FILE"
@@ -41,13 +48,6 @@ if [ -n "$STAGED_FILES" ]; then
             exit 1
         fi
     done
-
-    # Replace std::endl with '\n' in all staged .cpp/.hpp files
-    sed -i '' 's/std::endl/\\n/g' $STAGED_FILES
-    if [ $? -ne 0 ]; then
-        echo "Failed to replace std::endl with '\\n'. Aborting commit."
-        exit 1
-    fi
 
     # Add formatted files back to the staging area if not empty
     if [ -n "$STAGED_FILES" ]; then

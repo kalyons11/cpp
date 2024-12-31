@@ -24,18 +24,18 @@ void show_cexpr_funcs()
     constexpr double radius = 5.0;
     constexpr double circumference = get_circumference(radius);
     std::cout << "Circumference of a circle with radius " << radius << " is "
-              << circumference << \n;
+              << circumference << '\n';
 
     int a = 10;
     int b = 20;
     int max_val = max(a, b);
     std::cout << "Max value between " << a << " and " << b << " is " << max_val
-              << \n;
+              << '\n';
 
     constexpr int x = 30;
     constexpr int y = 40;
     constexpr int z = 50;
     int max_val_3 = max(x, y, z);
     std::cout << "Max value between " << x << ", " << y << " and " << z
-              << " is " << max_val_3 << \n;
+              << " is " << max_val_3 << '\n';
 }
