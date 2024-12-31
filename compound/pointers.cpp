@@ -22,7 +22,7 @@ void increment_by_address(int* ptr)
 
 // We can take in a reference to a pointer to be able to update where the
 // pointer points
-void update_pointer(int*& ptr)
+void update_pointer([[maybe_unused]] int*& ptr)
 {
     // static int value{10};
     // ptr = &value;

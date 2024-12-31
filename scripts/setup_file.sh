@@ -54,4 +54,4 @@ else
 fi
 
 # Open the newly created files in VS Code
-code "${FILE_NAME}.cpp" "${FILE_NAME}.hpp"
+code "${MAIN_CPP_FILE}" "${FILE_NAME}.cpp" "${FILE_NAME}.hpp"
