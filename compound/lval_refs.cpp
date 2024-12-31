@@ -2,6 +2,18 @@
 
 #include "lval_refs.hpp"
 
+// str is bound to the object passed to print_value as a reference
+// This avoids copying the object
+void print_value(std::string& str)
+{
+    std::cout << str << '\n';
+}
+
+void add_one(int& x)  // x must be modifiable
+{
+    x += 1;  // This will modify the value of the object passed to add_one
+}
+
 void run_lval_refs()
 {
     // A reference is an alias to an existing object
@@ -69,4 +81,65 @@ void run_lval_refs()
     std::cout << "var: " << var << '\n';                  // 42
     std::cout << "ref_var: " << ref_var << '\n';          // 42
     std::cout << "ref_ref_var: " << ref_ref_var << '\n';  // 42
+
+    // We can have a const reference to a const lvalue
+    const int const_x{42};
+    const int& ref_const_x{const_x};
+    // ref_const_x = 43; // error: assignment of read-only reference
+    // 'ref_const_x' const_x = 43; // error: assignment of read-only variable
+    // 'const_x'
+    std::cout << "const_x: " << const_x << '\n';          // 42
+    std::cout << "ref_const_x: " << ref_const_x << '\n';  // 42
+
+    // We can have a const reference to a non-const lvalue
+    int x2{44};
+    const int& ref_const_x2{x2};
+    // ref_const_x2 = 43; // error: assignment of read-only reference
+    x2 = 43;                            // okay: x2 is not const
+    std::cout << "x2: " << x2 << '\n';  // 43
+    std::cout << "ref_const_x2: " << ref_const_x2 << '\n';  // 43
+
+    // lvalue references to const can be initialized with rvalues
+    const int& ref_const_x3{51};
+    std::cout << "ref_const_x3: " << ref_const_x3 << '\n';  // 51
+
+    // We can have a reference of one type to an object of another type
+    const double& r1{5};
+    std::cout << "r1: " << r1 << '\n';  // 5.0
+    // But, the referenced object must be implicitly convertible to the
+    // reference
+
+    // When this type conversion takes place from a temporary object, the
+    // value can be modified
+    short test{1};
+    const int& ref_test{test};
+    --test;
+    std::cout << "ref_test: " << ref_test << '\n';  // Accessing ref_test will
+                                                    // print the value of test
+                                                    // at the time of
+                                                    // initialization
+    std::cout << "test: " << test << '\n';          // 0
+
+    // We can pass by reference to avoid copying large objects
+    // We can also use references to modify the value of an object in a function
+    int a{5};
+    int b{6};
+    std::cout << "a: " << a << '\n';  // 5
+    std::cout << "b: " << b << '\n';  // 6
+    std::swap(a, b);                  // a and b are passed by reference
+    std::cout << "a: " << a << '\n';  // 6
+    std::cout << "b: " << b << '\n';  // 5
+
+    // We can pass a reference to a std::string to print_value
+    std::string str{"Hello, World!"};
+    print_value(str);  // Hello, World!
+
+    // We can pass a reference to an int to add_one
+    int num{5};
+    add_one(num);
+    std::cout << "num: " << num << '\n';  // 6
+
+    // Reference parameters must be modifiable
+    const int const_num{5};
+    // add_one(const_num); // error: cannot bind non-const lvalue reference
 }
