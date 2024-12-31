@@ -38,8 +38,8 @@ MAIN_CPP_DIR=$(dirname "${FILE_NAME}")
 MAIN_CPP_FILE="${MAIN_CPP_DIR}/main.cpp"
 
 if [ -f "${MAIN_CPP_FILE}" ]; then
-    # Insert #include for the header file below the last include
-    sed -i '' "/#include/!b; :a; n; /#include/ba; i\\
+    # Insert #include for the header file
+    sed -i '' "1i\\
 #include \"$(basename "${FILE_NAME}").hpp\"
 " "${MAIN_CPP_FILE}"
 
