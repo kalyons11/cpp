@@ -42,6 +42,13 @@ if [ -n "$STAGED_FILES" ]; then
         fi
     done
 
+    # Replace std::endl with '\n' in all staged .cpp/.hpp files
+    sed -i '' 's/std::endl/\\n/g' $STAGED_FILES
+    if [ $? -ne 0 ]; then
+        echo "Failed to replace std::endl with '\\n'. Aborting commit."
+        exit 1
+    fi
+
     # Add formatted files back to the staging area if not empty
     if [ -n "$STAGED_FILES" ]; then
         git add $STAGED_FILES

@@ -92,6 +92,16 @@ void print_n_times(const std::string& str)
 //     return 0.0;
 // }
 
+template <int N>
+int factorial()
+{
+    static_assert(N >= 0, "N must be greater than or equal to 0");
+    if constexpr (N == 0)
+        return 1;
+    else
+        return N * factorial<N - 1>();
+}
+
 void do_templates()
 {
     // We can call the function with different types
@@ -130,6 +140,10 @@ void do_templates()
 
     // std::cout << get_sqrt<4.0>() << '\n';
     // std::cout << get_sqrt<-1>() << '\n';  // This will not compile
+
+    std::cout << factorial<5>() << '\n';  // 120
+    // std::cout << factorial<-1>() << '\n';  // This will not compile
+    std::cout << factorial<0>() << '\n';  // 1
 }
 
 // We can use multiple types in a template
