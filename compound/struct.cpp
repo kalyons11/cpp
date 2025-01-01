@@ -1,4 +1,5 @@
 #include <iostream>
+#include <numeric>
 
 #include "struct.hpp"
 
@@ -23,12 +24,33 @@ struct Fraction
     int denominator{1};
 };
 
+Fraction multiply(const Fraction& frac1, const Fraction& frac2)
+{
+    const Fraction result{frac1.numerator * frac2.numerator,
+                          frac1.denominator * frac2.denominator};
+    // Simplify the fraction
+    const int gcd = std::gcd(result.numerator, result.denominator);
+    return {result.numerator / gcd, result.denominator / gcd};
+}
+
 std::ostream& operator<<(std::ostream& os, const Fraction& frac)
 {
     os << frac.numerator << "/" << frac.denominator;
     // Print the value of the fraction as a decimal
     os << " = " << static_cast<double>(frac.numerator) / frac.denominator;
     return os;
+}
+
+// We can pass a struct by reference to avoid copying
+void print_employee(const Employee& emp)
+{
+    std::cout << emp << "\n";
+}
+
+// We can have a function return a struct
+Employee get_employee(int id, int age, float salary)
+{
+    return {id, age, salary};
 }
 
 void demo_structs()
@@ -80,4 +102,20 @@ void demo_structs()
     std::cout << one << "\n";  // 1/1 = 1.0
     const Fraction empty;
     std::cout << empty << "\n";  // 0/1 = 0.0
+
+    print_employee(emp1);
+    const Employee& ref_emp1 = emp1;
+    print_employee(ref_emp1);
+
+    const Employee emp6 = get_employee(6, 40, 150000.0);
+    std::cout << emp6 << "\n";
+
+    const Fraction frac2{2, 3};
+    const Fraction frac3{5, 7};
+    const Fraction result = multiply(frac2, frac3);  // 10/21
+    std::cout << result << "\n";
+
+    const Fraction frac4{3, 4};
+    const Fraction result2 = multiply(frac2, frac4);  // 1/2
+    std::cout << result2 << "\n";
 }
