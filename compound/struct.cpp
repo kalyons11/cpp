@@ -53,6 +53,34 @@ Employee get_employee(int id, int age, float salary)
     return {id, age, salary};
 }
 
+// We can create a Company struct that has an Employee CEO
+struct Company
+{
+    Employee ceo;
+    std::string name;
+};
+
+struct Point
+{
+    int x;
+    int y;
+};
+
+struct Triangle
+{
+    const Point* a;
+    const Point* b;
+    const Point* c;
+};
+
+std::ostream& operator<<(std::ostream& os, const Triangle* triangle)
+{
+    os << "Triangle a: (" << triangle->a->x << ", " << triangle->a->y << ")\n";
+    os << "Triangle b: (" << triangle->b->x << ", " << triangle->b->y << ")\n";
+    os << "Triangle c: (" << triangle->c->x << ", " << triangle->c->y << ")\n";
+    return os;
+}
+
 void demo_structs()
 {
     Employee emp1{1, 25, 50000.0};
@@ -118,4 +146,26 @@ void demo_structs()
     const Fraction frac4{3, 4};
     const Fraction result2 = multiply(frac2, frac4);  // 1/2
     std::cout << result2 << "\n";
+
+    const Company company{{7, 45, 200000.0}, "Acme Inc."};
+    std::cout << "Company: " << company.name << "\n";
+    std::cout << "CEO: " << company.ceo << "\n";
+
+    // We can use the member selection operator to access the fields of a struct
+    // from a pointer
+    const Employee* emp_ptr{&emp1};
+    std::cout << "Employee ID: " << emp_ptr->id << "\n";  // 1
+    // This is equivalent to (*emp_ptr).id but more concise
+    // We can also use the member selection operator to access the fields of a
+    // struct from a reference
+    const Employee& emp_ref{emp1};
+    std::cout << "Employee Age: " << emp_ref.age << "\n";  // 26
+
+    // We can do this in a nested way
+    const Point a{0, 0};
+    const Point b{3, 0};
+    const Point c{0, 4};
+    const Triangle triangle{&a, &b, &c};
+    const Triangle* triangle_ptr{&triangle};
+    std::cout << triangle_ptr;
 }
