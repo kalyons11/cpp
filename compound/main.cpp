@@ -1,5 +1,6 @@
 #include <iostream>
 
+#include "enum.hpp"
 #include "in_out.hpp"
 #include "intro.hpp"
 #include "lval_refs.hpp"
@@ -15,5 +16,6 @@ int main()
     start_pointers();
     run_in_out_params();
     show_optional();
+    run_enum();
     return 0;
 }
