@@ -96,6 +96,22 @@ std::ostream& operator<<(std::ostream& os, const Triangle* triangle)
     return os;
 }
 
+template <typename T>
+struct Triad
+{
+    const T* first;
+    const T* second;
+    const T* third;
+};
+
+template <typename T>
+void print_triad(const Triad<T>* triad)
+{
+    std::cout << "Triad first: " << *(triad->first) << "\n";
+    std::cout << "Triad second: " << *(triad->second) << "\n";
+    std::cout << "Triad third: " << *(triad->third) << "\n";
+}
+
 void demo_structs()
 {
     Employee emp1{1, 25, 50000.0};
@@ -207,4 +223,10 @@ void demo_structs()
     const std::pair<std::string, std::string> std_pair2{"Hello", "World"};
     std::cout << "std::pair 2: " << std_pair2.first << ", " << std_pair2.second
               << "\n";
+
+    const int t = 1;
+    const int u = 2;
+    const int v = 3;
+    const Triad<int> triad{&t, &u, &v};
+    print_triad(&triad);
 }
