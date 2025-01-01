@@ -51,6 +51,39 @@ struct Date
     }
 };
 
+// Data hiding is a key concept in object-oriented programming. It means that
+// the data is hidden from the outside world and only the class itself can
+// access it. This is done by making the data private. The class can then
+// provide public member functions to access the data. This is called
+// encapsulation.
+
+class Person
+{
+    std::string m_name;
+    char first_initial{};
+
+   public:
+    Person(const std::string& name)
+    {
+        m_name = name;
+        first_initial = m_name.front();
+    }
+
+    const std::string& getName() const { return m_name; }
+    void setName(const std::string& name)
+    {
+        // Ensure name is non-empty
+        if (name.empty()) return;
+        m_name = name;
+        first_initial = m_name.front();
+    }
+    void print() const
+    {
+        std::cout << "Name: " << m_name << " First initial: " << first_initial
+                  << '\n';
+    }
+};
+
 void show_oo()
 {
     // We can create instances of the Employee class
@@ -73,4 +106,9 @@ void show_oo()
 
     // We can use a getter to access the name data member
     auto name = alex.getName();
+
+    Person person{"Alex"};
+    std::cout << person.getName() << '\n';
+    person.setName("Joe");
+    person.print();
 }
