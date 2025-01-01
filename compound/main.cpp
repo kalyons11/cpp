@@ -6,6 +6,7 @@
 #include "lval_refs.hpp"
 #include "optional.hpp"
 #include "pointers.hpp"
+#include "struct.hpp"
 
 int main()
 {
@@ -17,5 +18,6 @@ int main()
     run_in_out_params();
     show_optional();
     run_enum();
+    demo_structs();
     return 0;
 }
