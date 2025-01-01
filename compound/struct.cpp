@@ -73,6 +73,21 @@ struct Triangle
     const Point* c;
 };
 
+// We can use class templates to create generic structs
+template <typename T>
+struct Pair
+{
+    T first;
+    T second;
+};
+
+// We can write a function to print the max of a pair
+template <typename T>
+T max(const Pair<T>& pair)
+{
+    return pair.first > pair.second ? pair.first : pair.second;
+}
+
 std::ostream& operator<<(std::ostream& os, const Triangle* triangle)
 {
     os << "Triangle a: (" << triangle->a->x << ", " << triangle->a->y << ")\n";
@@ -168,4 +183,28 @@ void demo_structs()
     const Triangle triangle{&a, &b, &c};
     const Triangle* triangle_ptr{&triangle};
     std::cout << triangle_ptr;
+
+    const Pair<int> pair1{1, 2};
+    std::cout << "Pair 1: " << pair1.first << ", " << pair1.second << "\n";
+
+    const Pair<std::string> pair2{"Hello", "World"};
+    std::cout << "Pair 2: " << pair2.first << ", " << pair2.second << "\n";
+
+    const Pair<Fraction> pair3{frac2, frac3};
+    std::cout << "Pair 3: " << pair3.first << ", " << pair3.second << "\n";
+
+    const Pair<int> pair4{3, 7};
+    std::cout << "Max of pair 4: " << max(pair4) << "\n";
+
+    const Pair<double> pair5{3.5, 7.2};
+    std::cout << "Max of pair 5: " << max(pair5) << "\n";
+
+    // We can use std::pair from the standard library
+    const std::pair<int, int> std_pair1{1, 2};
+    std::cout << "std::pair 1: " << std_pair1.first << ", " << std_pair1.second
+              << "\n";
+
+    const std::pair<std::string, std::string> std_pair2{"Hello", "World"};
+    std::cout << "std::pair 2: " << std_pair2.first << ", " << std_pair2.second
+              << "\n";
 }
