@@ -84,6 +84,25 @@ class Person
     }
 };
 
+template <typename T>
+class Pair
+{
+   private:
+    T m_first{};
+    T m_second{};
+
+   public:
+    Pair(const T& first, const T& second) : m_first{first}, m_second{second} {}
+
+    const T& first() const { return m_first; }
+    const T& second() const { return m_second; }
+    // Via injection, Pair is shorthand for Pair<T>
+    bool isEqual(Pair& pair) const
+    {
+        return m_first == pair.first() && m_second == pair.second();
+    }
+};
+
 void show_oo()
 {
     // We can create instances of the Employee class
@@ -111,4 +130,11 @@ void show_oo()
     std::cout << person.getName() << '\n';
     person.setName("Joe");
     person.print();
+
+    Pair<int> p1{5, 8};
+    Pair<int> p2{5, 8};
+    if (p1.isEqual(p2))
+        std::cout << "Pairs are equal\n";
+    else
+        std::cout << "Pairs are not equal\n";
 }
