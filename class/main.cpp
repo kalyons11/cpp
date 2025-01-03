@@ -1,4 +1,5 @@
 #include <iostream>
+#include "friend.hpp"
 
 #include "construct.hpp"
 #include "oo.hpp"
@@ -9,5 +10,6 @@ int main()
               << '\n';
     show_oo();
     run_constructors();
+    show_friends();
     return 0;
 }
