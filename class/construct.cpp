@@ -55,6 +55,30 @@ std::optional<Fraction> createFraction(int numerator, int denominator)
     return Fraction(numerator / gcd, denominator / gcd);
 }
 
+// We can have static members and functions in a class. A static member is
+// shared among all objects of the class. A static member function can access
+// only static members of a class. It does not have a this pointer. It can be
+// called using the class name. It is used to perform class-specific operations
+class Something
+{
+   private:
+    int m_other;
+    static inline int s_value;
+
+   public:
+    Something() : m_other{0} {}  // default constructor
+    ~Something()
+    {
+        std::cout << "Destructor called\n";
+        s_value = 0;
+    }  // destructor
+
+    static int getValue() { return s_value; }
+    static void increment() { ++s_value; }
+
+    void print() const { std::cout << "Something: " << m_other << '\n'; }
+};
+
 void run_constructors()
 {
     Foo foo(1, 2);
@@ -77,4 +101,11 @@ void run_constructors()
         f3.value().print();  // 1/2
     else
         std::cout << "Fraction has not been created.\n";
+
+    const int value{Something::getValue()};
+    std::cout << "Something::s_value is " << value << '\n';
+    Something::increment();
+    std::cout << "Something::s_value is " << Something::getValue() << '\n';
+    const Something thing{};
+    thing.print();
 }
