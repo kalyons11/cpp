@@ -11,6 +11,28 @@ struct Foo
     // all initialized to 0
 };
 
+// We want to pass vectors by reference to avoid copying
+// We also want to modify the vector, so we pass it by non-const reference
+// We can use a template to make the function more generic
+template <typename T>
+void test_vector_ref(std::vector<T>& vec)
+{
+    std::cout << "Size of vector in test_vector_ref: " << vec.size() << '\n';
+}
+
+template <typename T>
+void print_element(std::vector<T>& vec, const std::size_t index)
+{
+    if (index < vec.size())
+    {
+        std::cout << "Element at index " << index << ": " << vec[index] << '\n';
+    }
+    else
+    {
+        std::cout << "Index out of range\n";
+    }
+}
+
 void show_vector()
 {
     // Create an empty vector
@@ -27,6 +49,13 @@ void show_vector()
     std::cout << "Size of values vector: " << values.size() << '\n';
     std::cout << "Size of primes vector: " << primes.size() << '\n';
     std::cout << "Size of vowels vector: " << vowels.size() << '\n';
+
+    // Save the size as a variable
+    [[maybe_unused]] const std::size_t size =
+        values.size();  // size_t is an unsigned integer type
+
+    // if we want the size as an int we can use static_cast
+    [[maybe_unused]] const int int_size{static_cast<int>(values.size())};
 
     // Print the elements of the vectors
     std::cout << "Elements of values vector: ";
@@ -113,4 +142,78 @@ void show_vector()
         std::cout << str << ' ';
     }  // Output: Hello World from vectors!
     std::cout << '\n';
+
+    // We can also use the insert function to insert elements at a specific
+    // position
+    std::vector<int> insert_vector{1, 2, 3, 4, 5};
+    insert_vector.insert(insert_vector.begin() + 2, 10);
+    // The vector will now be {1, 2, 10, 3, 4, 5}
+
+    // We can also insert elements from another vector
+    std::vector<int> insert_values{6, 7, 8, 9};
+    insert_vector.insert(insert_vector.begin() + 3, insert_values.begin(),
+                         insert_values.end());
+    // The vector will now be {1, 2, 10, 6, 7, 8, 9, 3, 4, 5}
+
+    // We can also use the erase function to remove elements from a vector
+    insert_vector.erase(insert_vector.begin() + 2);
+    // The vector will now be {1, 2, 6, 7, 8, 9, 3, 4, 5}
+
+    // We can also remove a range of elements
+    insert_vector.erase(insert_vector.begin() + 2, insert_vector.begin() + 5);
+    // The vector will now be {1, 2, 9, 3, 4, 5}
+
+    // We can also use the pop_back function to remove the last element
+    insert_vector.pop_back();
+    // The vector will now be {1, 2, 9, 3, 4}
+
+    // We can also use the resize function to change the size of the vector
+    insert_vector.resize(10);
+    // The vector will now be {1, 2, 9, 3, 4, 0, 0, 0, 0, 0}
+
+    // We can also use the swap function to swap the contents of two vectors
+    std::vector<int> swap_vector{10, 20, 30};
+    insert_vector.swap(swap_vector);
+    // insert_vector will now be {10, 20, 30} and swap_vector will be {1, 2, 9,
+    // 3, 4, 0, 0, 0, 0, 0}
+
+    // We can also use the assign function to assign new values to the vector
+    insert_vector.assign(5, 100);
+    // The vector will now be {100, 100, 100, 100, 100}
+
+    // We can also use the assign function to assign values from another vector
+    insert_vector.assign(values.begin(), values.end());
+    // The vector will now be {1, 2, 3, 4, 5}
+
+    // We can also use the assign function to assign values from an initializer
+    // list
+    insert_vector.assign({10, 20, 30, 40, 50});
+    // The vector will now be {10, 20, 30, 40, 50}
+
+    // We can also use the reserve function to reserve memory for the vector
+    insert_vector.reserve(100);
+    // The vector will now have enough memory to store 100 elements
+
+    // We can also use the shrink_to_fit function to reduce the capacity of the
+    // vector to its size
+    insert_vector.shrink_to_fit();
+    // The vector will now have a capacity equal to its size
+
+    // We can also use the max_size function to get the maximum number of
+    // elements the vector can hold
+    std::cout << "Max size of insert_vector: " << insert_vector.max_size()
+              << '\n';
+
+    // We can also use the capacity function to get the current capacity of the
+    // vector
+    std::cout << "Capacity of insert_vector: " << insert_vector.capacity()
+              << '\n';  // Output: 5
+
+    // Let's invoke our test_vector_ref function
+    test_vector_ref(insert_vector);
+    test_vector_ref(strings);
+
+    // Let's invoke our print_element function
+    print_element(insert_vector, 2);   // Output: Element at index 2: 30
+    print_element(insert_vector, 10);  // Output: Index out of range
 }
