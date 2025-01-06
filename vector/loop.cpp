@@ -44,5 +44,5 @@ void run_loop()
     std::cout << '\n';
 
     const std::vector<std::string> names{"Kevin", "Bob", "Tim"};
-    std::cout << names[Test::Names::third];
+    std::cout << names[Test::Names::third] << '\n';
 }

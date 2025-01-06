@@ -3,6 +3,7 @@
 #include "intro.hpp"
 #include "loop.hpp"
 #include "move.hpp"
+#include "resize.hpp"
 
 int main()
 {
@@ -11,5 +12,6 @@ int main()
     show_vector();
     describe_move();
     run_loop();
+    adjust_size();
     return 0;
 }
