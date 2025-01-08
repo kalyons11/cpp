@@ -1,7 +1,7 @@
 #!/bin/bash
 
 # Default flags for compiling and linking with debug symbols
-CLANG_FLAGS="-mmacosx-version-min=13.0 -g -O0 -pedantic-errors -Wall -Weffc++ -Wextra -Wconversion -Wsign-conversion -Werror -Wno-unused -std=c++20"
+CLANG_FLAGS="-mmacosx-version-min=13.0 -g -O0 -pedantic-errors -Wall -Weffc++ -Wextra -Wconversion -Wsign-conversion -Werror -std=c++20"
 
 run_cpp() {
   if [ -z "$1" ]; then
