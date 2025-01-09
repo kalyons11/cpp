@@ -4,6 +4,21 @@
 
 #include "intro.hpp"
 
+// We must specify both type and length when passing by const reference
+void pass_array(const std::array<int, 5>& arr)
+{
+    std::cout << "Last element: " << std::get<2>(arr) << '\n';
+}
+
+// We can parameterize the type and length to enable more arrays
+template <typename T, std::size_t N>
+void pass_generic_array(const std::array<T, N>& arr)
+{
+    static_assert(N != 0);
+
+    std::cout << "First element: " << arr[0] << '\n';
+}
+
 void demo_array()
 {
     // We can compare creating an array and vector
@@ -30,4 +45,23 @@ void demo_array()
 
     // We really want to make our std::arrays constexpr to take advantage
     [[maybe_unused]] constexpr std::array<int, 5> prime{2, 3, 5, 7, 11};
+
+    // We can use CTAD to avoid type annotations
+    constexpr std::array test{0.5, 0.6, 0.7};
+    // This will be determined to be std::array<double, 3>
+
+    // We can get the length of an array with size(), not length()
+    constexpr std::size_t len{test.size()};
+    std::cout << "The size of test is: " << len << '\n';
+
+    // We can use [] and at, but even better is get which does compile time
+    // bounds checking
+    constexpr auto first = std::get<0>(test);  // 0.5
+    std::cout << "First is: " << first << '\n';
+    std::cout << "First is: " << test[0] << '\n';
+    std::cout << "First is: " << test.at(0) << '\n';
+    // std::cout << std::get<4>(test>) << '\n'; // Compile error
+
+    pass_array(prime);
+    pass_generic_array(test);
 }
