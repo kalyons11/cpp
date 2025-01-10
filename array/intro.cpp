@@ -19,6 +19,35 @@ void pass_generic_array(const std::array<T, N>& arr)
     std::cout << "First element: " << arr[0] << '\n';
 }
 
+// We can have an array of structs
+struct House
+{
+    int price;
+    // std::string address1;
+    int footage;
+    // ...
+};
+
+// Let's practice with pointers again
+struct Student
+{
+    int id{};
+    std::string_view name{};
+};
+
+template <typename std::size_t N>
+const Student* get_by_id(const std::array<Student, N>& arr, const int id)
+{
+    for (auto& s : arr)
+    {
+        if (s.id == id)
+        {
+            return &s;
+        }
+    }
+    return nullptr;
+};
+
 void demo_array()
 {
     // We can compare creating an array and vector
@@ -64,4 +93,25 @@ void demo_array()
 
     pass_array(prime);
     pass_generic_array(test);
+
+    constexpr std::array houses{House{140000, 1000}, House{270000, 2500}};
+
+    // We can loop over houses just like we did with vectors
+    for (const auto& house : houses)
+    {
+        std::cout << "House: $" << house.price << ", " << house.footage
+                  << "sq ft" << '\n';
+    }
+
+    constexpr std::array<Student, 3> students{
+        Student{1, "Alice"}, Student{2, "Bob"}, Student{3, "Charlie"}};
+
+    if (const Student* student = get_by_id(students, 2))
+    {
+        std::cout << "Found student: " << student->name << '\n';
+    }
+    else
+    {
+        std::cout << "Student not found\n";
+    }
 }
