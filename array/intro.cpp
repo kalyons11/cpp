@@ -114,4 +114,25 @@ void demo_array()
     {
         std::cout << "Student not found\n";
     }
+
+    // We can have an array of integers, or pointers to integers
+    std::array<int*, 3> int_ptrs{};
+    int a1 = 10, a2 = 20, a3 = 30;
+    int_ptrs[0] = &a1;
+    int_ptrs[1] = &a2;
+    int_ptrs[2] = &a3;
+
+    for (const auto ptr : int_ptrs)
+    {
+        std::cout << "Pointer points to value: " << *ptr << '\n';
+    }
+
+    // We cannot have an array of references without using
+    // std::reference_wrapper
+    std::array<std::reference_wrapper<int>, 3> int_refs{a1, a2, a3};
+
+    for (const auto& ref : int_refs)
+    {
+        std::cout << "Reference points to value: " << ref.get() << '\n';
+    }
 }
