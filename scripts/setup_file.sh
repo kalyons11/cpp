@@ -25,7 +25,8 @@ cat <<EOL > "${FILE_NAME}.cpp"
 
 #include "$(basename "${FILE_NAME}").hpp"
 
-void ${FUNCTION_NAME}() {
+void ${FUNCTION_NAME}()
+{
     // TODO: Implement ${FUNCTION_NAME}
     std::cout << "Function ${FUNCTION_NAME}() has been called." << '\n';
 }

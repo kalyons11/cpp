@@ -1,5 +1,6 @@
 #include <iostream>
 
+#include "decay.hpp"
 #include "intro.hpp"
 #include "old.hpp"
 
@@ -9,5 +10,6 @@ int main()
               << '\n';
     demo_array();
     show_c_style();
+    show_decay();
     return 0;
 }
