@@ -135,4 +135,10 @@ void demo_array()
     {
         std::cout << "Reference points to value: " << ref.get() << '\n';
     }
+
+    // Let's test a pointer
+    const int x = 5;
+    const int* check = &x;
+    std::cout << "Address of x: " << check << '\n';
+    std::cout << "Value of x: " << *check << '\n';
 }
