@@ -17,4 +17,20 @@ void run_pointer_arithmetic()
         std::cout << "Address " << (ptr + i) << " contains " << *(ptr + i)
                   << '\n';
     }
+
+    // We can apply this with pointers in subscripting
+    const int arr[]{1, 2, 3, 4, 5};
+    const int* q{arr};
+    std::cout << q[2] << '\n';  // Should print 3
+
+    const int vals[]{3, 2, 1};
+
+    // First, let's use subscripting to get the address and values of our array
+    // elements
+    std::cout << &vals[0] << ' ' << &vals[1] << ' ' << &vals[2] << '\n';
+    std::cout << vals[0] << ' ' << vals[1] << ' ' << vals[2] << '\n';
+
+    // Now let's do the equivalent using pointer arithmetic
+    std::cout << vals << ' ' << (vals + 1) << ' ' << (vals + 2) << '\n';
+    std::cout << *vals << ' ' << *(vals + 1) << ' ' << *(vals + 2) << '\n';
 }
