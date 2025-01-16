@@ -33,4 +33,22 @@ void run_pointer_arithmetic()
     // Now let's do the equivalent using pointer arithmetic
     std::cout << vals << ' ' << (vals + 1) << ' ' << (vals + 2) << '\n';
     std::cout << *vals << ' ' << *(vals + 1) << ' ' << *(vals + 2) << '\n';
+
+    // We can use pointer arithmetic for array traversal
+    constexpr int test[]{5, 6, 7, 8, 9, 10};
+    const int* current{test};
+    const int* end{test + std::size(test)};
+
+    for (; current != end; ++current)
+    {
+        std::cout << *current << ' ';
+    }
+    std::cout << '\n';
+
+    // This is how a range-based for loop is implemented
+    for (const auto t : test)
+    {
+        std::cout << t << ' ';
+    }
+    std::cout << '\n';
 }
