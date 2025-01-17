@@ -16,9 +16,9 @@ void dig_booleans()
     b1 = false;
     [[maybe_unused]] bool b3{};  // default initialize to false
 
-    [[maybe_unused]] bool truey{
+    [[maybe_unused]] bool truth{
         !true};  // b1 will be initialized with the value false
-    [[maybe_unused]] bool falsey{
+    [[maybe_unused]] bool fake{
         !false};  // b2 will be initialized with the value true
 
     // booleans store internally as 0 for false and 1 for true

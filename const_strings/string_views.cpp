@@ -70,7 +70,7 @@ void expose_string_views()
     // We can also use static_cast
     print_string(static_cast<std::string>(sv2));
 
-    // We can re-assing a string_view to point to a different string
+    // We can re-assign a string_view to point to a different string
     std::string str2{"Goodbye, World!"};
     sv2 = str2;
     print_string_view(sv2);

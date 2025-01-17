@@ -3,7 +3,7 @@
 
 #include "move.hpp"
 
-// We can return move-capbable types by value and the temporary r value
+// We can return move-capable types by value and the temporary r value
 // will be moved instead of copied and destroyed
 // For move-capable types we pass by reference and return by value
 template <typename T>

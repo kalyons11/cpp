@@ -63,7 +63,7 @@ void demo_array()
     // Prefer zero-initialization with braces to avoid elements being undefined
     [[maybe_unused]] std::array<int, 1> init{};
     [[maybe_unused]] std::vector<int> other(1);
-    // Members are value initializated (ints would be 0)
+    // Members are value initialized (ints would be 0)
 
     // More elements are not allowed, but fewer are
     // Remaining are value initialized

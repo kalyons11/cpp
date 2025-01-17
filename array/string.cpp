@@ -42,4 +42,12 @@ void show_c_strings()
     std::cout << "Real length of 'one': " << std::strlen(one) << '\n';
     std::cout << "Real length of 'hello': " << std::strlen(hello) << '\n';
     std::cout << "Real length of 'input': " << std::strlen(input) << '\n';
+
+    // We can initialize in 2 different ways
+    const char name[]{"Alex"};  // case 1: const C-style string initialized with
+                                // C-style string literal
+    const char* const color{
+        "Orange"};  // case 2: const pointer to C-style string literal
+
+    std::cout << name << ' ' << color << '\n';
 }
