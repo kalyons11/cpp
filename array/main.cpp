@@ -4,6 +4,7 @@
 #include "intro.hpp"
 #include "old.hpp"
 #include "pointer.hpp"
+#include "string.hpp"
 
 int main()
 {
@@ -13,5 +14,6 @@ int main()
     show_c_style();
     show_decay();
     run_pointer_arithmetic();
+    show_c_strings();
     return 0;
 }
