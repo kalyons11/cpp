@@ -50,4 +50,9 @@ void show_c_strings()
         "Orange"};  // case 2: const pointer to C-style string literal
 
     std::cout << name << ' ' << color << '\n';
+
+    // Type deduction works fine
+    [[maybe_unused]] auto s1{"Alex"};   // const char*
+    [[maybe_unused]] auto* s2{"Alex"};  // const char*
+    [[maybe_unused]] auto& s3{"Alex"};  // const char(&)[5]
 }
