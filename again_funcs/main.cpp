@@ -2,6 +2,7 @@
 
 #include "cexpr.hpp"
 #include "default.hpp"
+#include "lambda.hpp"
 #include "overload.hpp"
 #include "templates.hpp"
 
@@ -23,5 +24,6 @@ int main(int argc, char* argv[])
         std::cout << count << ' ' << argv[count] << '\n';
     }
 
+    show_lambdas();
     return 0;
 }
