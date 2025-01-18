@@ -14,14 +14,15 @@ int bar()
 
 // We can use function pointers to pass functions as arguments
 // to other functions, i.e. a callback
-void print_result(const int input, int (*func)(const int))
+// std::function is a bit cleaner
+void print_result(const int input, std::function<int(const int)> func)
 {
     if (!func)
     {
         return;
     }
 
-    std::cout << (*func)(input) << '\n';
+    std::cout << func(input) << '\n';
 }
 
 int increment(const int input)
