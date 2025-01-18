@@ -2,6 +2,7 @@
 
 #include "decay.hpp"
 #include "intro.hpp"
+#include "multi.hpp"
 #include "old.hpp"
 #include "pointer.hpp"
 #include "string.hpp"
@@ -15,5 +16,6 @@ int main()
     show_decay();
     run_pointer_arithmetic();
     show_c_strings();
+    show_multi_d();
     return 0;
 }
