@@ -32,6 +32,20 @@ void printAnother(const Array2D<T, Row, Col>& arr)
     }
 }
 
+// We can use constexpr to get the row and col sizes of an
+// Array2D at compile time
+template <typename T, std::size_t Row, std::size_t Col>
+constexpr std::size_t getRowCount(const Array2D<T, Row, Col>&)
+{
+    return Row;
+}
+
+template <typename T, std::size_t Row, std::size_t Col>
+constexpr std::size_t getColCount(const Array2D<T, Row, Col>&)
+{
+    return Col;
+}
+
 void show_multi_d()
 {
     [[maybe_unused]] int board[3][3]{};  // We can have 2D arrays
@@ -77,4 +91,8 @@ void show_multi_d()
     Array2D<double, 3, 3> doubleArray{
         {{1.1, 2.2, 3.3}, {4.4, 5.5, 6.6}, {7.7, 8.8, 9.9}}};
     printAnother(doubleArray);
+
+    // Let's get the row and col count of doubleArray using our func
+    std::cout << "Row count: " << getRowCount(doubleArray) << '\n';
+    std::cout << "Col count: " << getColCount(doubleArray) << '\n';
 }
