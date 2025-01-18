@@ -64,7 +64,9 @@ void show_try_catch()
     catch (const std::exception& exception)
     {
         std::cerr << "Standard exception: " << exception.what() << '\n';
+        // Use throw to re-throw the exception itself
+        throw;
     }
 
-    throw std::runtime_error("Random error");
+    // throw std::runtime_error("Random error");
 }
