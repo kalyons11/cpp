@@ -3,8 +3,16 @@
 
 int main()
 {
-    std::cout << "Hello, this is a sample message from project: "
-              << "exceptions" << '\n';
-    show_try_catch();
+    try
+    {
+        std::cout << "Hello, this is a sample message from project: "
+                  << "exceptions" << '\n';
+        show_try_catch();
+    }
+    catch (...)
+    {
+        std::cout << "Undetermined exception type caught." << '\n';
+    }
+
     return 0;
 }
