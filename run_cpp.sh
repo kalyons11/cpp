@@ -30,9 +30,9 @@ run_cpp() {
 
   echo "Executable generated: $SOURCE_DIR/$EXECUTABLE_FILE"
 
-  # Run the program
+  # Run the program, forwarding any additional command line arguments to the executable
   echo "Running the program..."
-  ./$EXECUTABLE_FILE
+  ./$EXECUTABLE_FILE "${@:2}"
 }
 
 run_cpp "$@"
