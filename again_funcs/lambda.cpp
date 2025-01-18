@@ -10,10 +10,11 @@ void show_lambdas()
     constexpr std::array<std::string_view, 4> arr{"apple", "banana", "wal",
                                                   "lemon"};
 
-    // Find a nut
+    // Find a value
+    std::string value{"app"};
     auto found{
-        std::find_if(arr.begin(), arr.end(), [](std::string_view str)
-                     { return str.find("nut") != std::string_view::npos; })};
+        std::find_if(arr.begin(), arr.end(), [value](std::string_view str)
+                     { return str.find(value) != std::string_view::npos; })};
 
     if (found != arr.end())
     {
